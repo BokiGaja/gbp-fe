@@ -1,0 +1,14 @@
+{
+  "common": {
+    "welcome": "Dobrodošli",
+    "description": "Ovo je Next.js aplikacija sa podrškom za i18n",
+    "about": {
+      "title": "O nama",
+      "description": "Mi smo tim posvećen razvoju odličnog softvera"
+    },
+    "nav": {
+      "home": "Početna",
+      "about": "O nama"
+    }
+  }
+} 

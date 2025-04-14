@@ -1,0 +1,14 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "description": "This is a Next.js application with i18n support",
+    "about": {
+      "title": "About Us",
+      "description": "We are a team dedicated to building great software"
+    },
+    "nav": {
+      "home": "Home",
+      "about": "About"
+    }
+  }
+} 
