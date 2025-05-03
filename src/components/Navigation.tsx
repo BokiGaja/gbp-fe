@@ -8,26 +8,47 @@ export function Navigation() {
   const t = useTranslations('common');
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex space-x-8">
-            <Link
-              href="/"
-              className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              {t('nav.home')}
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              {t('nav.about')}
-            </Link>
+    <>
+      {/* Spacer to avoid content overlap */}
+      <div className="h-[70px]" />
+
+      <nav className="fixed top-0 left-0 w-full z-50 text-white h-[70px]">
+        <div className="mx-auto px-6 xl:px-12 h-full">
+          <div className="flex justify-between items-center h-full">
+            {/* Left: Logo */}
+            <div className="flex items-center">
+              <img src="/logo.png" alt="Logo" className="w-[76px]" />
+            </div>
+
+            {/* Center: Navigation Links */}
+            <div className="hidden md:flex space-x-10 text-m">
+              <Link href="/products" className="hover:text-yellow-400 transition">
+                {t('nav.products')}
+              </Link>
+              <Link href="/partners" className="hover:text-yellow-400 transition">
+                {t('nav.partners')}
+              </Link>
+              <Link href="/events" className="hover:text-yellow-400 transition">
+                {t('nav.events')}
+              </Link>
+              <Link href="/about" className="hover:text-yellow-400 transition">
+                {t('nav.about')}
+              </Link>
+            </div>
+
+            {/* Right: Language + Contact */}
+            <div className="flex items-center space-x-6 text-m">
+              <LanguageSwitcher />
+              <Link
+                href="/contact"
+                className="text-white hover:text-yellow-400 transition"
+              >
+                {t('nav.contact')}
+              </Link>
+            </div>
           </div>
-          <LanguageSwitcher />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
-} 
+}

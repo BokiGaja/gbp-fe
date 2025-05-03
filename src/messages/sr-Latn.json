@@ -8,7 +8,11 @@
     },
     "nav": {
       "home": "Početna",
-      "about": "O nama"
+      "about": "O nama",
+      "products": "Proizvodi i usluge",
+      "partners": "Partneri",
+      "events": "Događaji",
+      "contact": "Kontakt"
     }
   }
-} 
+}

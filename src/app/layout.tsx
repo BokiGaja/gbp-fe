@@ -1,12 +1,17 @@
-import { Geist } from 'next/font/google';
 import './globals.css';
 
-const geist = Geist({ subsets: ['latin'] });
+import { Work_Sans } from 'next/font/google';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return children;
+const workSans = Work_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-work-sans',
+});
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={workSans.className}>
+      {children}
+    </div>
+  );
 }

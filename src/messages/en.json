@@ -8,7 +8,11 @@
     },
     "nav": {
       "home": "Home",
-      "about": "About"
+      "about": "Who we are",
+      "products": "Product & Services",
+      "partners": "Partners",
+      "events": "Events",
+      "contact": "Contact Us"
     }
   }
-} 
+}
