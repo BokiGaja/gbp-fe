@@ -1,7 +1,8 @@
 {
   "common": {
-    "welcome": "Dobrodošli",
-    "description": "Ovo je Next.js aplikacija sa podrškom za i18n",
+    "pageTitle": "Sačuvajmo naše okruženje.",
+    "pageSubtitle": "Naša najsavremenija oklopna vozila pružaju neuporediv učinak.",
+    "locatedInSerbia": "Loacirni u Srbiji",
     "about": {
       "title": "O nama",
       "description": "Mi smo tim posvećen razvoju odličnog softvera"

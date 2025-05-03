@@ -29,7 +29,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Navigation />
-          <main className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <main>
             {children}
           </main>
         </NextIntlClientProvider>
