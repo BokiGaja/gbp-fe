@@ -83,7 +83,7 @@ export default function HomePage() {
         </div>
 
         {/* Subtitle row below */}
-        <div className="flex justify-between items-center px-2 text-sm text-white/80">
+        <div className="flex justify-between items-center px-2 text-m text-white/80">
           <p>{t('pageSubtitle')}</p>
           <span>{t('locatedInSerbia')} 🇷🇸</span>
         </div>
