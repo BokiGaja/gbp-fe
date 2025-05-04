@@ -32,14 +32,24 @@ export default function HomePage() {
     const progress = progressRef.current;
     if (!video || !progress) return;
 
-    video.play();
-    progress.style.animation = 'progressLoop 10s linear infinite';
-    progress.style.animationPlayState = 'running';
+    // Safely attempt to play video
+    const tryPlay = async () => {
+      try {
+        await video.play();
+        progress.style.animation = 'progressLoop 10s linear infinite';
+        progress.style.animationPlayState = 'running';
+      } catch (err) {
+        console.warn('Video play failed:', err);
+      }
+    };
+
+    tryPlay();
 
     return () => {
       video.pause();
     };
   }, []);
+
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
