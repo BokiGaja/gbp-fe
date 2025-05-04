@@ -32,7 +32,6 @@ export default function HomePage() {
     const progress = progressRef.current;
     if (!video || !progress) return;
 
-    // Initial play
     video.play();
     progress.style.animation = 'progressLoop 10s linear infinite';
     progress.style.animationPlayState = 'running';
@@ -55,8 +54,12 @@ export default function HomePage() {
         <source src="/background_video.mp4" type="video/mp4" />
       </video>
 
+      {/* Gradient overlays */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-50 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col justify-end h-full px-8 pb-10 text-white mx-auto">
+      <div className="relative z-20 flex flex-col justify-end h-full px-8 pb-10 text-white mx-auto">
         <h1 className="text-5xl font-bold mb-8">{t('pageTitle')}</h1>
 
         {/* Progress bar and controls */}
