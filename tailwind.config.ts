@@ -9,6 +9,9 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-work-sans)', 'sans-serif'],
       },
+      colors: {
+        navy: '#000D2D',
+      },
     },
   },
   plugins: [],

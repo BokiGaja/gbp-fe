@@ -52,7 +52,7 @@ export default function Hero() {
 
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden px-4">
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -69,13 +69,13 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 w-full h-50 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
 
       {/* Overlay Content */}
-      <div className="relative z-20 flex flex-col justify-end h-full px-8 pb-10 text-white mx-auto">
+      <div className="relative z-20 flex flex-col justify-end h-full pb-10 text-white mx-auto">
         <h1 className="text-5xl font-bold mb-8">{t('pageTitle')}</h1>
 
         {/* Progress bar and controls */}
         <div className="w-full mb-3">
           <div className="flex items-center justify-between">
-            <div className="relative w-full h-[2px] bg-white/30 mx-2 overflow-hidden">
+            <div className="relative w-full h-[2px] bg-white/30 overflow-hidden">
               <div
                 ref={progressRef}
                 className="absolute top-0 left-0 h-full bg-white"
@@ -93,7 +93,7 @@ export default function Hero() {
         </div>
 
         {/* Subtitle row below */}
-        <div className="flex justify-between items-center px-2 text-m text-white/80">
+        <div className="flex justify-between items-center text-m text-white/80">
           <p>{t('pageSubtitle')}</p>
           <span>{t('locatedInSerbia')} 🇷🇸</span>
         </div>
