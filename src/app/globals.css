@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   @apply font-sans;
 }
+
+@keyframes progressLoop {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
