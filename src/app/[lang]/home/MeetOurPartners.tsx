@@ -101,6 +101,32 @@ export default function MeetOurPartners() {
     }
   };
 
+  const renderPartnerCard = (partner: typeof partners[0], idx: number) => (
+    <div
+      key={idx}
+      className="group bg-[#F5F5F5] md:bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default min-w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px] md:h-[300px]"
+      style={{ height: '300px'}}
+    >
+      {/* Overlay for non-hovered state */}
+      <div className="absolute inset-0 bg-white opacity-20 pointer-events-none rounded-xl transition-opacity duration-150 group-hover:opacity-0" />
+      <div className="flex w-full items-center justify-between pt-8 px-8 z-10">
+        <img src={partner.image} alt={partner.title} className="w-20 h-20 rounded-full" />
+        <a
+          href={partner.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
+          style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
+        >
+          <span className="hidden group-hover:inline" style={{ transition: 'none' }}>{t('visitWebsite')}</span>
+          <ArrowUpRight className="w-5 h-5 text-[#000D2D] font-[400] ml-0 group-hover:ml-2 md:ml-2" style={{ transition: 'none' }} />
+        </a>
+      </div>
+      <h3 className="text-[24px] font-[500] text-[#000D2D] pt-4 px-8 pb-0 m-0 z-10">{partner.title}</h3>
+      <p className="text-[16px] font-[400] px-8 pt-2 pb-0 leading-snug z-10" style={{ color: 'rgba(0,13,45,0.5)' }}>{partner.description}</p>
+    </div>
+  );
+
   return (
     <section className="my-30 px-4 w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-12 gap-3">
@@ -134,31 +160,7 @@ export default function MeetOurPartners() {
         className="flex gap-8 overflow-x-auto w-full pb-4 scroll-snap-x scroll-smooth scrollbar-hide"
         style={{ scrollSnapType: 'x mandatory', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
       >
-        {partners.map((partner, idx) => (
-          <div
-            key={idx}
-            className="group bg-[#F5F5F5] md:bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default min-w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px] md:h-[300px]"
-            style={{ height: '300px'}}
-          >
-            {/* Overlay for non-hovered state */}
-            <div className="absolute inset-0 bg-white opacity-20 pointer-events-none rounded-xl transition-opacity duration-150 group-hover:opacity-0" />
-            <div className="flex w-full items-center justify-between pt-8 px-8 z-10">
-              <img src={partner.image} alt={partner.title} className="w-20 h-20 rounded-full" />
-              <a
-                href={partner.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
-                style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
-              >
-                <span className="hidden group-hover:inline" style={{ transition: 'none' }}>{t('visitWebsite')}</span>
-                <ArrowUpRight className="w-5 h-5 text-[#000D2D] font-[400] ml-0 group-hover:ml-2 md:ml-2" style={{ transition: 'none' }} />
-              </a>
-            </div>
-            <h3 className="text-[24px] font-[500] text-[#000D2D] pt-4 px-8 pb-0 m-0 z-10">{partner.title}</h3>
-            <p className="text-[16px] font-[400] px-8 pt-2 pb-0 leading-snug z-10" style={{ color: 'rgba(0,13,45,0.5)' }}>{partner.description}</p>
-          </div>
-        ))}
+        {partners.map(renderPartnerCard)}
       </div>
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
