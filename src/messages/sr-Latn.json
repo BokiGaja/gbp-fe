@@ -1,20 +1,22 @@
 {
-  "common": {
+  "home": {
     "pageTitle": "Sačuvajmo naše okruženje.",
     "pageSubtitle": "Naša najsavremenija oklopna vozila pružaju neuporediv učinak.",
     "locatedInSerbia": "Loacirni u Srbiji",
-    "productsTitle": "Proizvodi i Servisi",
-    "about": {
-      "title": "O nama",
-      "description": "Mi smo tim posvećen razvoju odličnog softvera"
-    },
-    "nav": {
-      "home": "Početna",
-      "about": "O nama",
-      "products": "Proizvodi i usluge",
-      "partners": "Partneri",
-      "events": "Događaji",
-      "contact": "Kontakt"
-    }
+    "visitWebsite": "Poseti sajt",
+    "meetOurPartners": "Upoznajte naše partnere",
+    "productsTitle": "Proizvodi i Servisi"
+  },
+  "nav": {
+    "home": "Početna",
+    "about": "O nama",
+    "products": "Proizvodi i usluge",
+    "partners": "Partneri",
+    "events": "Događaji",
+    "contact": "Kontakt"
+  },
+  "about": {
+    "title": "O nama",
+    "description": "Mi smo tim posvećen razvoju odličnog softvera"
   }
 }

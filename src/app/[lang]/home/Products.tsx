@@ -13,7 +13,7 @@ const items = [
 ];
 
 const Products = () => {
-  const t = useTranslations('common');
+  const t = useTranslations('home');
 
   return (
     <div className="my-30 px-4">

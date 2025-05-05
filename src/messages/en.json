@@ -1,20 +1,22 @@
 {
-  "common": {
+  "home": {
     "pageTitle": "Let's keep our environment safe.",
     "pageSubtitle": "Our cutting-edge armored vehicles deliver unparalleled.",
     "locatedInSerbia": "Located in Serbia",
-    "productsTitle": "Products & Services",
-    "about": {
-      "title": "About Us",
-      "description": "We are a team dedicated to building great software"
-    },
-    "nav": {
-      "home": "Home",
-      "about": "Who we are",
-      "products": "Product & Services",
-      "partners": "Partners",
-      "events": "Events",
-      "contact": "Contact Us"
-    }
+    "visitWebsite": "Visit Website",
+    "meetOurPartners": "Meet Our Partners",
+    "productsTitle": "Products & Services"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Who we are",
+    "products": "Product & Services",
+    "partners": "Partners",
+    "events": "Events",
+    "contact": "Contact Us"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are a team dedicated to building great software"
   }
 }

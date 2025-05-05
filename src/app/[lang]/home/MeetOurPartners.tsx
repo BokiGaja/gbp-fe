@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const partners = [
   {
@@ -66,6 +67,7 @@ export default function MeetOurPartners() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const t = useTranslations('home');
 
   // Debounced progress update
   const debouncedUpdateProgress = () => {
@@ -102,7 +104,7 @@ export default function MeetOurPartners() {
   return (
     <section className="my-30 px-4 w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-12 gap-3">
-        <h2 className="text-3xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">Meet Our Partners</h2>
+        <h2 className="text-3xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">{t('meetOurPartners')}</h2>
         <div className="flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
           <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
             <div
@@ -149,7 +151,7 @@ export default function MeetOurPartners() {
                 className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
                 style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
               >
-                <span className="hidden group-hover:inline" style={{ transition: 'none' }}>Visit Website</span>
+                <span className="hidden group-hover:inline" style={{ transition: 'none' }}>{t('visitWebsite')}</span>
                 <ArrowUpRight className="w-5 h-5 text-[#000D2D] font-[400] ml-0 group-hover:ml-2 md:ml-2" style={{ transition: 'none' }} />
               </a>
             </div>

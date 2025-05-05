@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 
 export default function Hero() {
-  const t = useTranslations('common');
+  const t = useTranslations('home');
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 

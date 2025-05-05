@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function Navigation() {
-  const t = useTranslations('common');
+  const t = useTranslations('nav');
 
   return (
     <>
@@ -20,16 +20,16 @@ export function Navigation() {
             {/* Center: Navigation Links */}
             <div className="hidden md:flex space-x-10 text-m">
               <Link href="/products" className="hover:text-yellow-400 transition">
-                {t('nav.products')}
+                {t('products')}
               </Link>
               <Link href="/partners" className="hover:text-yellow-400 transition">
-                {t('nav.partners')}
+                {t('partners')}
               </Link>
               <Link href="/events" className="hover:text-yellow-400 transition">
-                {t('nav.events')}
+                {t('events')}
               </Link>
               <Link href="/about" className="hover:text-yellow-400 transition">
-                {t('nav.about')}
+                {t('about')}
               </Link>
             </div>
 
@@ -40,7 +40,7 @@ export function Navigation() {
                 href="/contact"
                 className="text-white hover:text-yellow-400 transition"
               >
-                {t('nav.contact')}
+                {t('contact')}
               </Link>
             </div>
           </div>
