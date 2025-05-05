@@ -9,7 +9,7 @@ export function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 text-white h-[70px]">
+      <nav className="top-0 left-0 w-full z-50 text-white h-[70px] bg-transparent absolute">
         <div className="mx-auto px-6 xl:px-12 h-full">
           <div className="flex justify-between items-center h-full">
             {/* Left: Logo */}
