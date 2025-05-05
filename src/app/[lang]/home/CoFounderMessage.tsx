@@ -1,7 +1,9 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const CoFounderMessage = () => {
+  const t = useTranslations('home');
   return (
     <section className="my-30 w-full flex flex-col lg:flex-row items-stretch bg-[#000D2D]">
       <div className="w-full lg:w-1/2 flex justify-center items-center">
@@ -13,11 +15,11 @@ const CoFounderMessage = () => {
       </div>
       <div className="flex-1 flex flex-col justify-center px-8 mt-8 lg:mt-40 mb-8">
         <h2 className="text-[40px] text-white font-[500] mb-6 leading-tight">
-          On the shoulders of giants, we build the future of defense.
+          {t('coFounderTitle')}
         </h2>
         <Quote className="w-10 h-10 text-white/20 mb-2" />
         <p className="text-[16px] md:text-[16px] font-[400] text-white/70 mb-10 max-w-2xl">
-          The founding of our company represents more than just a beginning – it is a vision built on innovation, trust, and determination to advance the military industry. Our goal is to develop technologies and solutions that not only meet but set new standards in the field of defense.
+          {t('coFounderBody')}
         </p>
         <div className="mt-auto flex justify-between items-end">
           <div>
