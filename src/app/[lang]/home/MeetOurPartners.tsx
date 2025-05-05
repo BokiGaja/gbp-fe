@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 const partners = [
   {
@@ -100,28 +101,30 @@ export default function MeetOurPartners() {
 
   return (
     <section className="my-30 px-4 w-full">
-      <div className="flex items-center w-full mb-12 gap-3">
+      <div className="flex flex-col md:flex-row md:items-center w-full mb-12 gap-3">
         <h2 className="text-3xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">Meet Our Partners</h2>
-        <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
-          <div
-            className="absolute left-0 top-0 h-full bg-[#000D2D] rounded transition-all duration-200"
-            style={{ width: `${scrollProgress * 100}%`, transitionProperty: 'width' }}
-          />
+        <div className="flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
+          <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
+            <div
+              className="absolute left-0 top-0 h-full bg-[#000D2D] rounded transition-all duration-200"
+              style={{ width: `${scrollProgress * 100}%`, transitionProperty: 'width' }}
+            />
+          </div>
+          <button
+            onClick={() => scrollBy(-420)}
+            className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white ml-4 cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button
+            onClick={() => scrollBy(420)}
+            className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </button>
         </div>
-        <button
-          onClick={() => scrollBy(-420)}
-          className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white ml-4 cursor-pointer"
-          aria-label="Scroll left"
-        >
-          <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button
-          onClick={() => scrollBy(420)}
-          className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white cursor-pointer"
-          aria-label="Scroll right"
-        >
-          <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
-        </button>
       </div>
       <div
         ref={scrollRef}
@@ -132,8 +135,8 @@ export default function MeetOurPartners() {
         {partners.map((partner, idx) => (
           <div
             key={idx}
-            className="group bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px] md:h-[300px]"
-            style={{ height: '300px' }}
+            className="group bg-[#F5F5F5] md:bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default min-w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px] md:h-[300px]"
+            style={{ height: '300px'}}
           >
             {/* Overlay for non-hovered state */}
             <div className="absolute inset-0 bg-white opacity-20 pointer-events-none rounded-xl transition-opacity duration-150 group-hover:opacity-0" />
@@ -143,11 +146,11 @@ export default function MeetOurPartners() {
                 href={partner.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-lg gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
+                className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
                 style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
               >
                 <span className="hidden group-hover:inline" style={{ transition: 'none' }}>Visit Website</span>
-                <span className="text-xl text-[#000D2D] font-[400] ml-0 group-hover:ml-2 md:ml-2" style={{ transition: 'none' }}>↗</span>
+                <ArrowUpRight className="w-5 h-5 text-[#000D2D] font-[400] ml-0 group-hover:ml-2 md:ml-2" style={{ transition: 'none' }} />
               </a>
             </div>
             <h3 className="text-[24px] font-[500] text-[#000D2D] pt-4 px-8 pb-0 m-0 z-10">{partner.title}</h3>
