@@ -128,9 +128,9 @@ export default function MeetOurPartners() {
   );
 
   return (
-    <section className="my-30 px-4 w-full">
+    <section className="mb-20 mt-10 md:my-30 px-4 w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-12 gap-3">
-        <h2 className="text-3xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">{t('meetOurPartners')}</h2>
+        <h2 className="text-4xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">{t('meetOurPartners')}</h2>
         <div className="flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
           <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
             <div

@@ -16,8 +16,8 @@ const Products = () => {
   const t = useTranslations('home');
 
   return (
-    <div className="my-30 px-4">
-      <h2 className="text-3xl text-[#000D2D] font-[500] mb-12">{t('productsTitle')}</h2>
+    <div className="py-20 md:py-30 px-4">
+      <h2 className="text-4xl text-[#000D2D] font-[500] mb-12">{t('productsTitle')}</h2>
 
       {/* ✅ Mobile: Unified Grid */}
       <div className="grid grid-cols-1 gap-2 md:hidden">

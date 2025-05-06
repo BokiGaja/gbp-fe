@@ -14,7 +14,7 @@ const CoFounderMessage = () => {
         />
       </div>
       <div className="flex-1 flex flex-col justify-center px-8 mt-8 lg:mt-40 mb-8">
-        <h2 className="text-[40px] text-white font-[500] mb-6 leading-tight">
+        <h2 className="text-4xl text-white font-[500] mb-6 leading-tight">
           {t('coFounderTitle')}
         </h2>
         <Quote className="w-10 h-10 text-white/20 mb-2" />
