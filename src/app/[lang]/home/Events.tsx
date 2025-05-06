@@ -30,13 +30,16 @@ const Events = () => {
       </div>
       <div className="grid md:grid-cols-2">
         {/* Left large event */}
-        <div className="relative md:row-span-2 max-h-[600px] h-[300px] md:h-[600px] overflow-hidden">
+        <div className="relative md:row-span-2 max-h-[600px] h-[300px] md:h-[600px] overflow-hidden cursor-pointer group">
           <img 
             src={events[0].image} 
             alt={events[0].title} 
-            className="w-full h-full object-cover max-h-[600px] cursor-pointer transition-all duration-300 hover:scale-105" 
+            className="w-full h-full object-cover max-h-[600px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
           />
-          <div className="absolute bottom-6 left-6 text-white">
+          <div className="absolute left-0 bottom-0 w-full pointer-events-none" style={{height: '60%'}}>
+            <div className="w-full h-full bg-gradient-to-t from-black/40 to-transparent" />
+          </div>
+          <div className="absolute bottom-6 left-6 text-white cursor-pointer">
             <div className="mb-2 text-sm opacity-80">{events[0].date}</div>
             <div className="text-xl md:text-2xl drop-shadow-lg max-w-xs">{events[0].title}</div>
           </div>
@@ -44,13 +47,16 @@ const Events = () => {
         {/* Right two small events */}
         <div className="grid grid-rows-2">
           {[1, 2].map((i) => (
-            <div key={i} className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden">
+            <div key={i} className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group">
               <img 
                 src={events[i].image} 
                 alt={events[i].title} 
-                className="w-full h-full object-cover max-h-[300px] cursor-pointer transition-all duration-300 hover:scale-105" 
+                className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
               />
-              <div className="absolute bottom-4 left-4 text-white">
+              <div className="absolute left-0 bottom-0 w-full pointer-events-none" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+              <div className="absolute bottom-4 left-4 text-white cursor-pointer">
                 <div className="mb-1 text-xs opacity-80">{events[i].date}</div>
                 <div className="text-lg drop-shadow max-w-xs">{events[i].title}</div>
               </div>
