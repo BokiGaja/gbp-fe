@@ -130,8 +130,9 @@ export default function MeetOurPartners() {
   return (
     <section className="mb-20 mt-10 md:my-30 px-4 w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-12 gap-3">
-        <h2 className="text-4xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0">{t('meetOurPartners')}</h2>
-        <div className="flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
+        <h2 className="text-4xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0 mr-2">{t('meetOurPartners')}</h2>
+        {/* Desktop progress bar and arrows */}
+        <div className="hidden md:flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
           <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
             <div
               className="absolute left-0 top-0 h-full bg-[#000D2D] rounded transition-all duration-200"
@@ -161,6 +162,29 @@ export default function MeetOurPartners() {
         style={{ scrollSnapType: 'x mandatory', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
       >
         {partners.map(renderPartnerCard)}
+      </div>
+      {/* Mobile progress bar and arrows */}
+      <div className="flex md:hidden flex-row items-center w-full gap-3 mt-4">
+        <div className="flex-1 h-[2px] bg-gray-200 relative rounded overflow-hidden">
+          <div
+            className="absolute left-0 top-0 h-full bg-[#000D2D] rounded transition-all duration-200"
+            style={{ width: `${scrollProgress * 100}%`, transitionProperty: 'width' }}
+          />
+        </div>
+        <button
+          onClick={() => scrollBy(-420)}
+          className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white ml-4 cursor-pointer"
+          aria-label="Scroll left"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button
+          onClick={() => scrollBy(420)}
+          className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white cursor-pointer"
+          aria-label="Scroll right"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+        </button>
       </div>
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
