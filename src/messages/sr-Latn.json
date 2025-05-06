@@ -34,5 +34,35 @@
   "about": {
     "title": "O nama",
     "description": "Mi smo tim posvećen razvoju odličnog softvera"
+  },
+  "footer": {
+    "productServices": "Proizvodi i usluge",
+    "whoWeAre": "O nama",
+    "ourInfo": "Naše informacije",
+    "services": {
+      "vitez": "Vitez",
+      "remont": "Remont",
+      "air": "Vazduh",
+      "sea": "More",
+      "ground": "Kopno",
+      "consulting": "Konsalting",
+      "mediation": "Medijacija"
+    },
+    "links": {
+      "events": "Događaji",
+      "partners": "Partneri",
+      "careers": "Karijera",
+      "licenses": "Licence",
+      "aboutUs": "O nama",
+      "joinTeam": "Pridruži se timu"
+    },
+    "legal": {
+      "privacyPolicy": "Politika privatnosti",
+      "termsOfUse": "Uslovi korišćenja",
+      "accessibility": "Pristupačnost",
+      "modernSlavery": "Izjava o modernom ropstvu",
+      "cookiesSettings": "Podešavanja kolačića"
+    },
+    "copyright": "© GPB 2025"
   }
 }

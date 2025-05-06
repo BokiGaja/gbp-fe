@@ -34,5 +34,35 @@
   "about": {
     "title": "About Us",
     "description": "We are a team dedicated to building great software"
+  },
+  "footer": {
+    "productServices": "Product & Services",
+    "whoWeAre": "Who we are",
+    "ourInfo": "Our Info",
+    "services": {
+      "vitez": "Vitez",
+      "remont": "Remont",
+      "air": "Air",
+      "sea": "Sea",
+      "ground": "Ground",
+      "consulting": "Consulting",
+      "mediation": "Mediation"
+    },
+    "links": {
+      "events": "Events",
+      "partners": "Partners",
+      "careers": "Careers",
+      "licenses": "Licenses",
+      "aboutUs": "About Us",
+      "joinTeam": "Join Team"
+    },
+    "legal": {
+      "privacyPolicy": "Privacy policy",
+      "termsOfUse": "Terms of use",
+      "accessibility": "Accessibility",
+      "modernSlavery": "Modern Slavery Statement",
+      "cookiesSettings": "Cookies Settings"
+    },
+    "copyright": "© GPB 2025"
   }
 }
