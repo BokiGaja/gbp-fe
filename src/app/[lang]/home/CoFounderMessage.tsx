@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 const CoFounderMessage = () => {
   const t = useTranslations('home');
   return (
-    <section className="my-30 w-full flex flex-col lg:flex-row items-stretch bg-[#000D2D]">
+    <section className="mt-30 w-full flex flex-col lg:flex-row items-stretch bg-[#000D2D]">
       <div className="w-full lg:w-1/2 flex justify-center items-center">
         <img
           src="/co-founder.png"
