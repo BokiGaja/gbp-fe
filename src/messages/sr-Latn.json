@@ -7,7 +7,21 @@
     "meetOurPartners": "Upoznajte naše partnere",
     "productsTitle": "Proizvodi i Servisi",
     "coFounderTitle": "Na ramenima divova gradimo budućnost odbrane.",
-    "coFounderBody": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama, poverenju i odlučnosti da unapredimo vojnu industriju. Naš cilj je da razvijamo tehnologije i rešenja koja ne samo da ispunjavaju, već i postavljaju nove standarde u oblasti odbrane."
+    "coFounderBody": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama, poverenju i odlučnosti da unapredimo vojnu industriju. Naš cilj je da razvijamo tehnologije i rešenja koja ne samo da ispunjavaju, već i postavljaju nove standarde u oblasti odbrane.",
+    "events": {
+      "title": "Događaji",
+      "readAll": "Pogledaj sve"
+    },
+    "contact": {
+      "title": "Velike priče počinju prvim",
+      "subtitle": "korakom – kontaktirajte nas i",
+      "subtitle2": "kreiramo budućnost zajedno!",
+      "joinTeam": "Želim da se pridružim timu",
+      "productsServices": "Zainteresovan za proizvode i usluge",
+      "partnership": "Zainteresovan za partnerstvo"
+    },
+    "play": "Pusti",
+    "pause": "Pauza"
   },
   "nav": {
     "home": "Početna",

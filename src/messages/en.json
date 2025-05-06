@@ -7,7 +7,21 @@
     "meetOurPartners": "Meet Our Partners",
     "productsTitle": "Products & Services",
     "coFounderTitle": "On the shoulders of giants, we build the future of defense.",
-    "coFounderBody": "The founding of our company represents more than just a beginning – it is a vision built on innovation, trust, and determination to advance the military industry. Our goal is to develop technologies and solutions that not only meet but set new standards in the field of defense."
+    "coFounderBody": "The founding of our company represents more than just a beginning – it is a vision built on innovation, trust, and determination to advance the military industry. Our goal is to develop technologies and solutions that not only meet but set new standards in the field of defense.",
+    "events": {
+      "title": "Events",
+      "readAll": "Read all"
+    },
+    "contact": {
+      "title": "Great stories begin with the first",
+      "subtitle": "step – contact us and let's",
+      "subtitle2": "create the future together!",
+      "joinTeam": "I want to join the team",
+      "productsServices": "Interested in products & services",
+      "partnership": "Interested in partnership"
+    },
+    "play": "Play",
+    "pause": "Pause"
   },
   "nav": {
     "home": "Home",

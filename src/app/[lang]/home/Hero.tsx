@@ -87,7 +87,7 @@ export default function Hero() {
               className="flex items-center space-x-2 px-4 py-1 w-28 cursor-pointer"
             >
               {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-              <span>{isPlaying ? 'Pause' : 'Play'}</span>
+              <span>{isPlaying ? t('pause') : t('play')}</span>
             </button>
           </div>
         </div>

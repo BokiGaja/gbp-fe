@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const events = [
   {
@@ -19,11 +20,13 @@ const events = [
 ];
 
 const Events = () => {
+  const t = useTranslations('home.events');
+
   return (
     <section className="w-full px-4 py-20 md:py-30">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-4xl font-[500] text-[#000D2D] mb-4">Events</h2>
-        <a href="#" className="text-[#000D2D] text-md">Read all</a>
+        <h2 className="text-4xl font-[500] text-[#000D2D] mb-4">{t('title')}</h2>
+        <a href="#" className="text-[#000D2D] text-md">{t('readAll')}</a>
       </div>
       <div className="grid md:grid-cols-2">
         {/* Left large event */}
