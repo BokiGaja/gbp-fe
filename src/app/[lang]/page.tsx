@@ -4,6 +4,7 @@ import MeetOurPartners from './home/MeetOurPartners';
 import CoFounderMessage from './home/CoFounderMessage';
 import ContactUs from './home/ContactUs';
 import Events from './home/Events';
+import Footer from '@/components/Footer';
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <CoFounderMessage />
       <ContactUs />
       <Events />
+      <Footer />
     </>
   );
 }
