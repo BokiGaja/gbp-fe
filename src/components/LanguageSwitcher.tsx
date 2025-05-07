@@ -39,7 +39,7 @@ export function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center space-x-1 text-white hover:text-yellow-400 transition cursor-pointer"
+        className="flex items-center space-x-1 text-white cursor-pointer"
       >
         <span className="mr-2">{getLabel(currentLocale || 'en')}</span>
         <Globe size={18} />
