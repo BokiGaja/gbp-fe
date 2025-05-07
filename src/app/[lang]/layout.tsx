@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { Navigation } from '@/components/Navigation';
+import { Providers } from '@/app/providers';
 
 import { Work_Sans } from 'next/font/google';
 
@@ -36,10 +37,12 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={lang} className={workSans.className}>
       <body>
         <NextIntlClientProvider locale={lang} messages={messages}>
-          <Navigation />
-          <main>
-            {children}
-          </main>
+          <Providers>
+            <Navigation />
+            <main>
+              {children}
+            </main>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

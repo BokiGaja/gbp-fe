@@ -1,40 +1,47 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCategories } from '@/hooks/useCategories';
+import Link from 'next/link';
 
-const items = [
-  { 
-    title: 'Ground', 
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80' // Military vehicle
-  },
-  { 
-    title: 'Security', 
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80' // Security meeting
-  },
-  { 
-    title: 'Air', 
-    image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80' // City view
-  },
-  { 
-    title: 'Space', 
-    image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80' // Space view
-  },
-  { 
-    title: 'Sea', 
-    image: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80' // Naval vessel
-  },
-  { 
-    title: 'Ammunition', 
-    image: 'https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=800&q=80' // Military equipment
-  },
-  { 
-    title: 'Mediation', 
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' // Diplomatic meeting
-  },
-];
+type Category = {
+  id: number;
+  name: string;
+  slug: string;
+  coverImage?: {
+    formats?: {
+      small?: { url: string };
+      thumbnail?: { url: string };
+    };
+  };
+};
+
+type Item = {
+  title: string;
+  image: string;
+  slug: string;
+};
 
 const Products = () => {
   const t = useTranslations('home');
+  const { data, isLoading, isError } = useCategories();
+
+  // Memoize the items array from API data
+  const items = useMemo(() => {
+    if (!data?.categories) return [];
+    return (data.categories as Category[]).map((cat) => ({
+      title: cat.name,
+      image: cat.coverImage?.formats?.small?.url || cat.coverImage?.formats?.thumbnail?.url || '',
+      slug: cat.slug,
+    }));
+  }, [data]);
+
+  if (isLoading) return (
+    <div className="py-20 px-4 flex justify-center items-center">
+      <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+    </div>
+  );
+  if (isError) return <div className="py-20 px-4 text-red-500">{t('errorLoading')}</div>;
 
   return (
     <div className="py-20 md:py-30 px-4">
@@ -42,19 +49,21 @@ const Products = () => {
 
       {/* ✅ Mobile: Unified Grid */}
       <div className="grid grid-cols-1 gap-1 md:hidden">
-        {items.map((item) => (
-          <div key={item.title} className="relative h-[200px] min-h-[200px] overflow-hidden cursor-pointer group">
-            <img 
-              src={item.image} 
-              alt={item.title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
-            />
-            <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-              <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
-            </div>
-            <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">
-              {item.title}
-            </div>
+        {items.map((item: Item) => (
+          <div key={item.slug} className="relative h-[200px] min-h-[200px] overflow-hidden cursor-pointer group">
+            <Link href={`/en/${item.slug}`} className="block w-full h-full">
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+              </div>
+              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">
+                {item.title}
+              </div>
+            </Link>
           </div>
         ))}
       </div>
@@ -64,64 +73,74 @@ const Products = () => {
         {/* Top Section */}
         <div className="grid [grid-template-columns:1.3fr_0.85fr_0.85fr] grid-rows-2 gap-1 h-[480px]">
           <div className="relative row-span-2 overflow-hidden cursor-pointer group">
-            <img 
-              src={items[0].image} 
-              alt={items[0].title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
-            />
-            <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-              <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
-            </div>
-            <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[0].title}</div>
-          </div>
-          <div className="relative col-span-2 overflow-hidden cursor-pointer group">
-            <img 
-              src={items[1].image} 
-              alt={items[1].title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
-            />
-            <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-              <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
-            </div>
-            <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[1].title}</div>
-          </div>
-          <div className="relative overflow-hidden cursor-pointer group">
-            <img 
-              src={items[2].image} 
-              alt={items[2].title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
-            />
-            <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-              <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
-            </div>
-            <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[2].title}</div>
-          </div>
-          <div className="relative overflow-hidden cursor-pointer group">
-            <img 
-              src={items[3].image} 
-              alt={items[3].title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
-            />
-            <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-              <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
-            </div>
-            <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[3].title}</div>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="grid grid-cols-3 gap-1 h-[240px] mt-1">
-          {items.slice(4).map((item) => (
-            <div key={item.title} className="relative overflow-hidden cursor-pointer group">
+            <Link href={`/en/${items[0]?.slug}`} className="block w-full h-full">
               <img 
-                src={item.image} 
-                alt={item.title} 
+                src={items[0]?.image} 
+                alt={items[0]?.title} 
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
                 <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
               </div>
-              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{item.title}</div>
+              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[0]?.title}</div>
+            </Link>
+          </div>
+          <div className="relative col-span-2 overflow-hidden cursor-pointer group">
+            <Link href={`/en/${items[1]?.slug}`} className="block w-full h-full">
+              <img 
+                src={items[1]?.image} 
+                alt={items[1]?.title} 
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+              </div>
+              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[1]?.title}</div>
+            </Link>
+          </div>
+          <div className="relative overflow-hidden cursor-pointer group">
+            <Link href={`/en/${items[2]?.slug}`} className="block w-full h-full">
+              <img 
+                src={items[2]?.image} 
+                alt={items[2]?.title} 
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+              </div>
+              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[2]?.title}</div>
+            </Link>
+          </div>
+          <div className="relative overflow-hidden cursor-pointer group">
+            <Link href={`/en/${items[3]?.slug}`} className="block w-full h-full">
+              <img 
+                src={items[3]?.image} 
+                alt={items[3]?.title} 
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+              </div>
+              <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[3]?.title}</div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="grid grid-cols-3 gap-1 h-[240px] mt-1">
+          {items.slice(4).map((item: Item) => (
+            <div key={item.slug} className="relative overflow-hidden cursor-pointer group">
+              <Link href={`/en/${item.slug}`} className="block w-full h-full">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
+                />
+                <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
+                  <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                </div>
+                <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{item.title}</div>
+              </Link>
             </div>
           ))}
         </div>
