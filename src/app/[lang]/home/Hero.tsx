@@ -72,7 +72,7 @@ export default function Hero() {
       <div className="relative z-20 flex flex-col justify-end h-full pb-10 text-white mx-auto">
         {/* Title and pause button row (desktop only) */}
         <div className="flex flex-row items-center justify-between mb-4 md:mb-8">
-          <h1 className="text-3xl md:text-5xl font-[500] md:font-bold mb-0 text-left">{t('pageTitle')}</h1>
+          <h1 className="text-3xl md:text-5xl font-[500] md:font-[500] mb-0 text-left">{t('pageTitle')}</h1>
           <button
             onClick={togglePlay}
             className="hidden md:flex items-center space-x-2 px-4 py-1 w-28 cursor-pointer mr-[-20px]"
