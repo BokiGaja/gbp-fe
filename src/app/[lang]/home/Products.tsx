@@ -44,8 +44,8 @@ const Products = () => {
   if (isError) return <div className="py-20 px-4 text-red-500">{t('errorLoading')}</div>;
 
   return (
-    <div className="py-20 md:py-30 px-4">
-      <h2 className="text-4xl text-[#000D2D] font-[500] mb-12">{t('productsTitle')}</h2>
+    <div className="pt-20 md:pt-30 px-4">
+      <h2 className="text-3xl md:text-4xl text-[#000D2D] font-[500] mb-8 md:mb-12">{t('productsTitle')}</h2>
 
       {/* ✅ Mobile: Unified Grid */}
       <div className="grid grid-cols-1 gap-1 md:hidden">

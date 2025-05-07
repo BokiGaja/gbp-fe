@@ -47,9 +47,9 @@ const Events = () => {
   if (!items.length) return null;
 
   return (
-    <section className="w-full px-4 py-20 md:py-30">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-4xl font-[500] text-[#000D2D] mb-4">{t('title')}</h2>
+    <section className="w-full px-4 pt-20 md:pt-30 pb-40 md:pb-60">
+      <div className="flex justify-between items-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D]">{t('title')}</h2>
         <a href="#" className="text-[#000D2D] text-md">{t('readAll')}</a>
       </div>
       <div className="grid md:grid-cols-2">
