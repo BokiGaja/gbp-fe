@@ -61,7 +61,7 @@ const Events = () => {
             className="w-full h-full object-cover max-h-[600px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
           />
           <div className="absolute left-0 bottom-0 w-full pointer-events-none" style={{height: '60%'}}>
-            <div className="w-full h-full bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
           </div>
           <div className="absolute bottom-6 left-6 text-white cursor-pointer">
             <div className="mb-2 text-sm opacity-80">{items[0].date}</div>
@@ -79,7 +79,7 @@ const Events = () => {
                   className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
                 />
                 <div className="absolute left-0 bottom-0 w-full pointer-events-none" style={{height: '60%'}}>
-                  <div className="w-full h-full bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
                 </div>
                 <div className="absolute bottom-4 left-4 text-white cursor-pointer">
                   <div className="mb-1 text-xs opacity-80">{items[i].date}</div>

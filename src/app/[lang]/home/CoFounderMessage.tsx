@@ -13,7 +13,7 @@ const CoFounderMessage = () => {
           className="w-full h-full object-cover max-h-[700px]"
         />
         {/* Mobile overlay */}
-        <div className="block lg:hidden absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4 flex flex-row items-center justify-between">
+        <div className="block lg:hidden absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#000D2D]/90 to-transparent p-4 flex flex-row items-center justify-between">
           <div>
             <div className="text-[20px] text-white font-[500] leading-tight">Budimir Gajic</div>
             <div className="text-[16px] text-white/70 font-[400]">Co-Founder</div>

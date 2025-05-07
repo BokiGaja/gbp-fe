@@ -58,7 +58,7 @@ const Products = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
               </div>
               <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">
                 {item.title}
@@ -80,7 +80,7 @@ const Products = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
               </div>
               <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[0]?.title}</div>
             </Link>
@@ -93,7 +93,7 @@ const Products = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
               </div>
               <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[1]?.title}</div>
             </Link>
@@ -106,7 +106,7 @@ const Products = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
               </div>
               <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[2]?.title}</div>
             </Link>
@@ -119,7 +119,7 @@ const Products = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
               />
               <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
               </div>
               <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{items[3]?.title}</div>
             </Link>
@@ -137,7 +137,7 @@ const Products = () => {
                   className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" 
                 />
                 <div className="absolute left-0 top-0 w-full pointer-events-none" style={{height: '60%'}}>
-                  <div className="w-full h-full bg-gradient-to-b from-black/40 to-transparent" />
+                  <div className="w-full h-full bg-gradient-to-b from-[#000D2D]/60 to-transparent" />
                 </div>
                 <div className="absolute top-6 left-6 text-white font-medium drop-shadow-lg z-10 cursor-pointer">{item.title}</div>
               </Link>

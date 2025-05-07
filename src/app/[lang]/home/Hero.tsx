@@ -65,8 +65,8 @@ export default function Hero() {
       </video>
 
       {/* Gradient overlays */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-50 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#000D2D]/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-50 bg-gradient-to-t from-[#000D2D]/60 to-transparent z-10 pointer-events-none" />
 
       {/* Overlay Content */}
       <div className="relative z-20 flex flex-col justify-end h-full pb-10 text-white mx-auto">
