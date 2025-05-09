@@ -52,13 +52,13 @@ const Events = () => {
         <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D]">{t('title')}</h2>
         <a href="#" className="text-[#000D2D] text-md">{t('readAll')}</a>
       </div>
-      <div className="grid md:grid-cols-2">
+      <div className="grid md:grid-cols-2 gap-1">
         {/* Left large event */}
-        <div className="relative md:row-span-2 max-h-[600px] h-[300px] md:h-[600px] overflow-hidden cursor-pointer group">
+        <div className="relative md:row-span-2 max-h-[604px] h-[300px] md:h-[604px] overflow-hidden cursor-pointer group bg-white">
           <img 
             src={items[0].image} 
             alt={items[0].title} 
-            className="w-full h-full object-cover max-h-[600px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
+            className="w-full h-full object-cover max-h-[604px] transition-all duration-300 group-hover:scale-105 cursor-pointer" 
           />
           <div className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0" style={{height: '60%'}}>
             <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
@@ -69,10 +69,10 @@ const Events = () => {
           </div>
         </div>
         {/* Right two small events */}
-        <div className="grid grid-rows-2">
+        <div className="grid grid-rows-2 gap-1">
           {[1, 2].map((i) => (
             items[i] && (
-              <div key={i} className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group">
+              <div key={i} className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white">
                 <img 
                   src={items[i].image} 
                   alt={items[i].title} 
