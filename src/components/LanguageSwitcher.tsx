@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing';
 import { useState, useEffect, useRef } from 'react';
 import { Globe } from 'lucide-react';
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -39,10 +39,12 @@ export function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center space-x-1 text-white cursor-pointer"
+        className={`flex items-center space-x-1 cursor-pointer ${
+          isDark ? 'text-[#000D2D]' : 'text-white'
+        }`}
       >
         <span className="mr-2">{getLabel(currentLocale || 'en')}</span>
-        <Globe size={18} />
+        <Globe size={18} className={isDark ? 'text-[#000D2D]' : 'text-white'} />
       </button>
 
       {open && (
@@ -54,7 +56,7 @@ export function LanguageSwitcher() {
                 router.replace(pathname, { locale });
                 setOpen(false);
               }}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer rounded"
+              className="block w-full text-left text-[#000D2D] px-4 py-2 hover:bg-gray-100 cursor-pointer rounded"
             >
               {getLabel(locale)}
             </button>

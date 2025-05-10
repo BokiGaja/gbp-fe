@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_API } from '@/constants/api';
 
-export const useEvents = () => {
+export const useTopEvents = () => {
   return useQuery({
-    queryKey: ['events'],
+    queryKey: ['top-events'],
     queryFn: async () => {
-      const res = await axios.get(`${BASE_API}/events`);
+      const res = await axios.get(`${BASE_API}/top-events`);
       return res.data;
     },
   });

@@ -1,3 +1,4 @@
+import { Navigation } from '@/components/Navigation';
 import Hero from './home/Hero';
 import Products from '@/app/[lang]/home/Products';
 import MeetOurPartners from './home/MeetOurPartners';
@@ -9,6 +10,7 @@ import Footer from '@/components/Footer';
 export default function HomePage() {
   return (
     <>
+      <Navigation isHome={true} />
       <Hero />
       <Products />
       <MeetOurPartners />

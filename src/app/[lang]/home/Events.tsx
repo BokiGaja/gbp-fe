@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
 import React, { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { useEvents } from '@/hooks/useEvents';
+import { useTopEvents } from '@/hooks/useTopEvents';
+import Link from 'next/link';
 
 type EventImageFormat = {
   url: string;
@@ -23,7 +24,7 @@ interface Event {
 
 const Events = () => {
   const t = useTranslations('home.events');
-  const { data, isLoading, isError } = useEvents();
+  const { data, isLoading, isError } = useTopEvents();
 
   // Memoize the items array from API data
   const items = useMemo(() => {
@@ -50,7 +51,7 @@ const Events = () => {
     <section className="w-full px-4 pt-20 md:pt-30 pb-40 md:pb-60">
       <div className="flex justify-between items-center mb-8 md:mb-12">
         <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D]">{t('title')}</h2>
-        <a href="#" className="text-[#000D2D] text-md">{t('readAll')}</a>
+        <Link href="/events" className="text-[#000D2D] text-md">{t('readAll')}</Link>
       </div>
       <div className="grid md:grid-cols-2 gap-1">
         {/* Left large event */}

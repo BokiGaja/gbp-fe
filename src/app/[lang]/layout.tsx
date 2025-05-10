@@ -1,7 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
-import { Navigation } from '@/components/Navigation';
 import { Providers } from '@/app/providers';
 
 import { Work_Sans } from 'next/font/google';
@@ -38,7 +37,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Providers>
-            <Navigation />
             <main>
               {children}
             </main>
