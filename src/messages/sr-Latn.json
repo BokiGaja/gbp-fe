@@ -35,6 +35,9 @@
     "title": "O nama",
     "description": "Mi smo tim posvećen razvoju odličnog softvera"
   },
+  "events": {
+    "title": "Događaji"
+  },
   "footer": {
     "productServices": "Proizvodi i usluge",
     "whoWeAre": "O nama",

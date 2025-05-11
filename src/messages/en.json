@@ -35,6 +35,9 @@
     "title": "About Us",
     "description": "We are a team dedicated to building great software"
   },
+  "events": {
+    "title": "Events"
+  },
   "footer": {
     "productServices": "Product & Services",
     "whoWeAre": "Who we are",

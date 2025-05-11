@@ -4,6 +4,7 @@ import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useEvents } from '@/hooks/useEvents';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 type Event = {
   id?: string | number;
@@ -24,6 +25,7 @@ function groupEventsByMonth(events: Event[]) {
 
 export default function EventsPage() {
   const { data, isLoading, error } = useEvents();
+  const t = useTranslations('events');
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Failed to load events.</div>;
@@ -37,7 +39,7 @@ export default function EventsPage() {
     <div className="flex flex-col min-h-screen">
       <Navigation />
       <main className="flex-1 px-4 py-12 bg-white">
-        <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12">Events</h2>
+        <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12">{t('title')}</h2>
         {/* Featured event */}
         {featured && (
           <div className="relative w-full h-[400px] md:h-[630px] overflow-hidden mb-12 cursor-pointer group">
@@ -57,7 +59,6 @@ export default function EventsPage() {
             </div>
             <button
               className="absolute bottom-6 right-6 w-12 h-12 flex items-center justify-center border border-white rounded-md bg-white/20 z-10 transition-colors duration-150 cursor-pointer"
-              aria-label="Arrow (does nothing)"
               type="button"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="h-7 w-7">
