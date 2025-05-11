@@ -67,17 +67,17 @@ export default function EventsPage() {
           </div>
         )}
         {/* Grouped events by month/year */}
-        <div className="space-y-16 pt-12 border-t border-[#000D2D]/8">
+        <div className="border-t border-[#000D2D]/8">
           {Object.entries(grouped).map(([month, events]) => (
-            <div key={month} className="flex flex-col md:flex-row items-start gap-2 md:gap-8">
+            <div key={month} className="flex flex-col md:flex-row items-start gap-2 md:gap-8s border-b border-[#000D2D]/8 py-12 last:border-b-0">
               {/* Date label */}
               <div className="w-full md:w-64 text-[#000D2D] opacity-70 text-lg font-[500] flex-shrink-0 mb-2 md:mb-0">{month}</div>
               {/* Events grid */}
-              <div className="grid gap-1 flex-1 w-full" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+              <div className="flex flex-row flex-wrap gap-1 justify-start w-full">
                 {events.map((event, idx) => (
                   <div
                     key={event.id || idx}
-                    className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full"
+                    className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full md:max-w-[450px]"
                   >
                     <img
                       src={event.coverImage?.url || ''}
