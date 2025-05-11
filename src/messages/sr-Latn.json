@@ -38,6 +38,24 @@
   "events": {
     "title": "Događaji"
   },
+  "contact": {
+    "title": "Razlog za kontakt",
+    "productsServices": {
+      "title": "Zainteresovan za proizvode i usluge",
+      "description": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama.",
+      "cta": "Kontaktirajte nas"
+    },
+    "joinTeam": {
+      "title": "Želim da se pridružim timu",
+      "description": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama.",
+      "cta": "Pogledaj otvorene pozicije"
+    },
+    "partnership": {
+      "title": "Zainteresovan za partnerstvo",
+      "description": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama.",
+      "cta": "Kontaktirajte nas"
+    }
+  },
   "footer": {
     "productServices": "Proizvodi i usluge",
     "whoWeAre": "O nama",

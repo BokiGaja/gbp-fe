@@ -38,6 +38,24 @@
   "events": {
     "title": "Events"
   },
+  "contact": {
+    "title": "Reason for contacting",
+    "productsServices": {
+      "title": "Interested in products & services",
+      "description": "The founding of our company represents more than just a beginning – it is a vision built on innovation.",
+      "cta": "Contact Us"
+    },
+    "joinTeam": {
+      "title": "I want to join the team",
+      "description": "The founding of our company represents more than just a beginning – it is a vision built on innovation.",
+      "cta": "See Opened Roles"
+    },
+    "partnership": {
+      "title": "Interested in partnership",
+      "description": "The founding of our company represents more than just a beginning – it is a vision built on innovation.",
+      "cta": "Contact Us"
+    }
+  },
   "footer": {
     "productServices": "Product & Services",
     "whoWeAre": "Who we are",
