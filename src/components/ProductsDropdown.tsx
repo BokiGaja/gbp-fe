@@ -18,6 +18,7 @@ interface Category {
   };
   children?: Category[];
   items?: { name: string }[];
+  parents?: Category[];
 }
 
 export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dropdownRef, t }) => {
@@ -25,7 +26,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
   const [selected, setSelected] = useState<Category | null>(null);
 
   // Only root categories (with children or items)
-  const rootCategories = (categories || []).filter((cat: Category) => (cat.children && cat.children.length > 0) || (cat.items && cat.items.length > 0));
+  const rootCategories = (categories || []).filter((cat: Category) => !cat.parents || cat.parents.length === 0);
 
   useEffect(() => {
     if (rootCategories.length > 0) {
