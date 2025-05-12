@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { useCategories } from '@/hooks/useCategories';
+import { useTopCategories } from '@/hooks/useCategories';
 import Link from 'next/link';
 
 type Category = {
@@ -24,7 +24,7 @@ type Item = {
 
 const Products = () => {
   const t = useTranslations('home');
-  const { data, isLoading, isError } = useCategories();
+  const { data, isLoading, isError } = useTopCategories();
 
   // Memoize the items array from API data
   const items = useMemo(() => {
