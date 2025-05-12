@@ -34,6 +34,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={lang} className={workSans.className}>
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </head>
       <body>
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Providers>

@@ -6,6 +6,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { CategoriesDropdown } from './ProductsDropdown';
+import CategoriesIcon from './icons/CategoriesIcon';
 
 export function Navigation({ isHome = false }: { isHome?: boolean }) {
   const t = useTranslations('nav');
@@ -63,12 +64,13 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
             {/* Product & Services Dropdown */}
             <div className="relative">
               <button
-                className={linkClass + ' flex items-center gap-2'}
+                className={linkClass + ' flex items-center gap-2 cursor-pointer'}
                 onClick={() => setDropdownOpen((open) => !open)}
                 aria-haspopup="true"
                 aria-expanded={dropdownOpen}
                 type="button"
               >
+                <CategoriesIcon className="mr-2" />
                 {t('products')}
                 <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
