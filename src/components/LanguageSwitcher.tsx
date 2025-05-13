@@ -2,23 +2,16 @@
 
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import { useState, useEffect, useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const [currentLocale, setCurrentLocale] = useState('en');
-
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-      const lang = document.documentElement.lang;
-      if (lang) setCurrentLocale(lang);
-    }
-  }, []);
 
   const getLabel = (locale: string) => {
     return locale === 'en' ? 'Eng' : 'Srpski';
@@ -43,7 +36,7 @@ export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
           isDark ? 'text-[#000D2D]' : 'text-white'
         }`}
       >
-        <span className="mr-2">{getLabel(currentLocale || 'en')}</span>
+        <span className="mr-2">{getLabel(locale || 'en')}</span>
         <Globe size={18} className={isDark ? 'text-[#000D2D]' : 'text-white'} />
       </button>
 

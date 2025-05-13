@@ -5,7 +5,14 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['gbp-strapi.s3.eu-central-1.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'gbp-strapi.s3.eu-central-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   /* config options here */
 };

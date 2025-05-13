@@ -20,4 +20,14 @@ export const useCategories = () => {
       return res.data;
     },
   });
+};
+
+export const useCategory = (id: string) => {
+  return useQuery({
+    queryKey: ['category', id],
+    queryFn: async () => {
+      const res = await axios.get(`${BASE_API}/categories/${id}`);
+      return res.data;
+    },
+  });
 }; 

@@ -3,14 +3,6 @@ import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { Providers } from '@/app/providers';
 
-import { Work_Sans } from 'next/font/google';
-
-const workSans = Work_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-work-sans',
-});
-
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'sr-Latn' }];
 }
@@ -23,7 +15,7 @@ interface Props {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  const lang = params.lang;
+  const { lang } = await params;
   let messages;
 
   try {
@@ -33,19 +25,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={lang} className={workSans.className}>
-      <head>
-        <link rel="icon" href="/logo.png" type="image/png" />
-      </head>
-      <body>
-        <NextIntlClientProvider locale={lang} messages={messages}>
-          <Providers>
-            <main>
-              {children}
-            </main>
-          </Providers>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={lang} messages={messages}>
+      <Providers>
+        <main>
+          {children}
+        </main>
+      </Providers>
+    </NextIntlClientProvider>
   );
 }

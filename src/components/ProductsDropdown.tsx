@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCategories } from '@/hooks/useCategories';
+import { useRouter } from 'next/navigation';
 
 interface CategoriesDropdownProps {
   open: boolean;
@@ -24,6 +25,7 @@ interface Category {
 export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dropdownRef, t }) => {
   const { data: categories, isLoading, isError } = useCategories();
   const [selected, setSelected] = useState<Category | null>(null);
+  const router = useRouter();
 
   // Only root categories (with children or items)
   const rootCategories = (categories || []).filter((cat: Category) => !cat.parents || cat.parents.length === 0);
@@ -52,7 +54,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
             <div
               key={cat.id}
               className={`flex items-center justify-between px-2 py-2 rounded-lg transition-colors hover:bg-[#16244A] cursor-pointer ${selected?.id === cat.id ? 'bg-[#16244A]' : ''}`}
-              onClick={() => setSelected(cat)}
+              onClick={() => router.push(`/${cat.slug}/${cat.slug}`)}
             >
               <span>{cat.name}</span>
               {selected?.id === cat.id && (
@@ -85,6 +87,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
                     key={child.id}
                     className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
                     style={{ minWidth: 0 }}
+                    onClick={() => selected && router.push(`/${selected.slug}/${child.slug}`)}
                   >
                     <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
                       {child.name}
@@ -101,6 +104,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
                     key={idx}
                     className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
                     style={{ minWidth: 0 }}
+                    onClick={() => selected && item.slug && router.push(`/${selected.slug}/${item.slug}`)}
                   >
                     <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
                       {item.name}
@@ -135,6 +139,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
                   key={child.id}
                   className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
                   style={{ minWidth: 0 }}
+                  onClick={() => selected && router.push(`/${selected.slug}/${child.slug}`)}
                 >
                   <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
                     {child.name}
@@ -151,6 +156,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
                   key={idx}
                   className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
                   style={{ minWidth: 0 }}
+                  onClick={() => selected && item.slug && router.push(`/${selected.slug}/${item.slug}`)}
                 >
                   <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
                     {item.name}
