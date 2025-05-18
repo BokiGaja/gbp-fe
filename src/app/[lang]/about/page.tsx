@@ -1,12 +1,17 @@
-import { useTranslations } from 'next-intl';
+"use client";
 
-export default function AboutPage() {
-  const t = useTranslations('common');
+import { Navigation } from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import AboutHero from './AboutHero';
 
+export default function AboutUsPage() {
   return (
-    <div className="prose lg:prose-xl">
-      <h1 className="text-4xl font-bold mb-6">{t('about.title')}</h1>
-      <p className="text-lg text-gray-700">{t('about.description')}</p>
+    <div className="flex flex-col min-h-screen">
+      <Navigation />
+      <main className="flex-1 px-4 py-12">
+        <AboutHero />
+      </main>
+      <Footer />
     </div>
   );
 } 
