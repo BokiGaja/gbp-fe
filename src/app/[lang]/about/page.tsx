@@ -3,6 +3,7 @@
 import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AboutHero from './AboutHero';
+import MeetOurFaces from './MeetOurFaces';
 
 export default function AboutUsPage() {
   return (
@@ -10,6 +11,7 @@ export default function AboutUsPage() {
       <Navigation />
       <main className="flex-1 px-4 py-12">
         <AboutHero />
+        <MeetOurFaces />
       </main>
       <Footer />
     </div>
