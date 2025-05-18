@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import AboutHero from './AboutHero';
 import MeetOurFaces from './MeetOurFaces';
 import LicensedLeader from './LicensedLeader';
+import OurLocations from './OurLocations';
 
 export default function AboutUsPage() {
   return (
@@ -14,6 +15,7 @@ export default function AboutUsPage() {
         <AboutHero />
         <MeetOurFaces />
         <LicensedLeader />
+        <OurLocations />
       </main>
       <Footer />
     </div>

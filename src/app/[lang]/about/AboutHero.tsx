@@ -13,7 +13,7 @@ export default function AboutHero() {
         </div>
         {/* Right: Logos grid */}
         <div className="flex-1 flex items-center justify-center">
-          <div className="grid grid-cols-2 grid-rows-2 gap-px w-full max-w-md aspect-square bg-white rounded-lg p-6">
+          <div className="grid grid-cols-2 grid-rows-2 gap-px w-full max-w-md aspect-square bg-white rounded-lg pt-10 px-6">
             {/* GBP logo centered on top row, spanning two columns */}
             <div className="flex items-center justify-center col-span-2 p-4 bg-[#F5F5F5]">
               <img src="/gbp-logo.png" alt="Logo 1" width={120} height={120} />
