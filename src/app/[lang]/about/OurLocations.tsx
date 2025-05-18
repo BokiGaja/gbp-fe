@@ -24,8 +24,8 @@ const locations = [
 export default function OurLocations() {
   return (
     <section className="w-full bg-white py-16 pt-30 md:pt-40">
-      <h2 className="text-3xl md:text-4xl font-[500] text-[#0A1633] mb-16 px-4">Our locations</h2>
-      <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+      <h2 className="text-3xl md:text-4xl font-[500] text-[#0A1633] mb-16">Our locations</h2>
+      <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {locations.map((loc, i) => (
           <div
             key={i}
