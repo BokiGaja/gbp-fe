@@ -4,6 +4,7 @@ import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AboutHero from './AboutHero';
 import MeetOurFaces from './MeetOurFaces';
+import LicensedLeader from './LicensedLeader';
 
 export default function AboutUsPage() {
   return (
@@ -12,6 +13,7 @@ export default function AboutUsPage() {
       <main className="flex-1 px-4 py-12">
         <AboutHero />
         <MeetOurFaces />
+        <LicensedLeader />
       </main>
       <Footer />
     </div>
