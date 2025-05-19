@@ -27,26 +27,25 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
         setDropdownOpen(false);
       }
     }
-    function handleScroll() {
-      setDropdownOpen(false);
-    }
     if (dropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      window.addEventListener('scroll', handleScroll, true);
+      document.body.classList.add('overflow-hidden');
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
+      document.body.classList.remove('overflow-hidden');
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
+      document.body.classList.remove('overflow-hidden');
     };
   }, [dropdownOpen]);
 
   return (
     <nav
       className={`top-0 left-0 w-full z-50 h-[70px] ${
-        isHome
+        dropdownOpen
+          ? 'text-white bg-[#0A1633]'
+          : isHome
           ? 'text-white bg-transparent absolute'
           : 'text-[#000D2D] bg-white border-b border-[#000D2D]/8'
       }`}

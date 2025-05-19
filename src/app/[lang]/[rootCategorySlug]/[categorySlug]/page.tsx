@@ -3,12 +3,12 @@ import Footer from '@/components/Footer';
 import { BASE_API } from '@/constants/api';
 import React from 'react';
 
-export default async function CategoryPage({ params }: { params: { lang: string; rootCategorySlug: string; categorySlug: string } }) {
+export default async function CategoryPage({ params }: { params: Promise<{ lang: string; rootCategorySlug: string; categorySlug: string }> }) {
+  const resolvedParams = await params;
   let category = null;
   let error = null;
   try {
-    console.log('Fetching category', `${BASE_API}/categories/${params.categorySlug}`);
-    const res = await fetch(`${BASE_API}/categories/${params.categorySlug}`, { next: { revalidate: 60 } });
+    const res = await fetch(`${BASE_API}/categories/${resolvedParams.categorySlug}`, { next: { revalidate: 60 } });
     if (!res.ok) throw new Error('Not found');
     category = await res.json();
   } catch (e) {

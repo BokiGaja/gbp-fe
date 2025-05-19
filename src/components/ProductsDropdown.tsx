@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCategories } from '@/hooks/useCategories';
 import { useRouter } from 'next/navigation';
+import { ChevronRight } from 'lucide-react';
 
 interface CategoriesDropdownProps {
   open: boolean;
@@ -18,9 +19,41 @@ interface Category {
     formats?: { thumbnail?: { url: string } };
   };
   children?: Category[];
-  items?: { name: string }[];
+  items?: { name: string; slug?: string }[];
   parents?: Category[];
 }
+
+interface SubItem {
+  id?: number;
+  name: string;
+  slug?: string;
+}
+
+interface SubItemListProps {
+  items: SubItem[];
+  selectedId?: number;
+  onClick: (item: SubItem) => void;
+}
+
+const SubItemList: React.FC<SubItemListProps> = ({ items, selectedId, onClick }) => (
+  <div className="flex flex-col gap-2 w-full overflow-y-auto">
+    {items.map((item, idx) => (
+      <div
+        key={item.id ?? idx}
+        className={`flex items-center h-[55px] gap-3 font-work-sans font-normal text-[16px] leading-[23px] tracking-normal text-[#B3B8C5] cursor-pointer group transition-colors hover:text-white ${selectedId === item.id ? 'font-semibold bg-[#16244A] text-white' : ''}`}
+        style={{ minWidth: 0 }}
+        onClick={() => onClick(item)}
+      >
+        <span className="inline-block pb-1 border-b-1 border-transparent group-hover:border-white transition-colors">
+          {item.name}
+        </span>
+        <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xl text-white">
+          <ChevronRight size={24} />
+        </span>
+      </div>
+    ))}
+  </div>
+);
 
 export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dropdownRef, t }) => {
   const { data: categories, isLoading, isError } = useCategories();
@@ -43,81 +76,49 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
   return (
     <div
       ref={dropdownRef}
-      className="fixed left-0 top-[70px] w-screen h-[662px] bg-[#0A1633] text-white rounded-b-lg shadow-lg z-50 flex flex-row p-0 m-0 md:flex-row flex-col md:h-[662px] h-auto overflow-y-auto max-h-[calc(100vh-70px)]"
+      className="fixed left-0 right-0 top-[70px] bottom-0 w-screen bg-[#0A1633] text-white rounded-b-lg shadow-lg z-50 flex flex-row p-0 m-0 md:flex-row flex-col h-[calc(100vh-70px)]"
       style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
     >
       {/* Left: Menu (full width on mobile, left column on desktop) */}
-      <div className="flex flex-col gap-2 px-8 py-12 w-full md:w-[340px] h-full">
+      <div className="flex flex-col gap-2 px-8 py-12 w-full md:w-[340px] h-[70vh] min-h-[300px] md:h-full">
         <div className="text-xl font-semibold mb-6">{t('products')}</div>
-        <div className="overflow-y-auto max-h-[320px] md:max-h-[500px]">
+        <div className="overflow-y-auto max-h-[60vh] md:max-h-[500px]">
           {rootCategories.map((cat: Category) => (
-            <div
-              key={cat.id}
-              className={`flex items-center justify-between px-2 py-2 rounded-lg transition-colors hover:bg-[#16244A] cursor-pointer ${selected?.id === cat.id ? 'bg-[#16244A]' : ''}`}
-              onClick={() => router.push(`/${cat.slug}/${cat.slug}`)}
-            >
-              <span>{cat.name}</span>
+            <div key={cat.id}>
+              <div
+                className={`flex items-center justify-between px-2 py-2 rounded-lg transition-colors hover:bg-[#16244A] cursor-pointer ${selected?.id === cat.id ? 'bg-[#16244A]' : ''}`}
+                onClick={() => setSelected(cat)}
+              >
+                <span>{cat.name}</span>
+                {selected?.id === cat.id && (
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                )}
+              </div>
+              {/* Mobile drawer for subcategories/items */}
               {selected?.id === cat.id && (
-                <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <div className="block md:hidden pl-4 border-l border-white/10 mt-2">
+                  {cat.children && cat.children.length > 0 && (
+                    <SubItemList
+                      items={cat.children}
+                      selectedId={undefined}
+                      onClick={(child) => cat && router.push(`/${cat.slug}/${child.slug}`)}
+                    />
+                  )}
+                  {cat.items && cat.items.length > 0 && (
+                    <SubItemList
+                      items={cat.items}
+                      selectedId={undefined}
+                      onClick={(item) => cat && item.slug && router.push(`/${cat.slug}/${item.slug}`)}
+                    />
+                  )}
+                </div>
               )}
             </div>
           ))}
         </div>
-        {/* Mobile: show right part below selected category */}
-        <div className="block md:hidden w-full mt-8">
-          {selected?.coverImage?.url && (
-            <div className="w-full h-[200px] relative rounded-lg overflow-hidden mb-4">
-              <Image
-                src={selected.coverImage.url}
-                alt={selected.name}
-                fill
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-                sizes="100vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-[#0A1633]/60" />
-            </div>
-          )}
-          <div className="px-2">
-            <div className="text-2xl font-semibold mb-4">{selected?.name}</div>
-            {selected?.children && selected.children.length > 0 && (
-              <div className="flex flex-col gap-2 w-full overflow-y-auto max-h-[200px] md:max-h-[300px]">
-                {selected.children.map((child) => (
-                  <div
-                    key={child.id}
-                    className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
-                    style={{ minWidth: 0 }}
-                    onClick={() => selected && router.push(`/${selected.slug}/${child.slug}`)}
-                  >
-                    <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
-                      {child.name}
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-xl">&gt;</span>
-                  </div>
-                ))}
-              </div>
-            )}
-            {selected?.items && selected.items.length > 0 && (
-              <div className="flex flex-col gap-2 mt-4 w-full overflow-y-auto max-h-[200px] md:max-h-[300px]">
-                {selected.items.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
-                    style={{ minWidth: 0 }}
-                    onClick={() => selected && item.slug && router.push(`/${selected.slug}/${item.slug}`)}
-                  >
-                    <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
-                      {item.name}
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-xl">&gt;</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        {/* Mobile: do not show cover image */}
+        {/* Desktop: show right part as side panel */}
       </div>
-      {/* Desktop: Right part as side panel */}
       <div className="hidden md:block flex-1 h-full relative overflow-hidden">
         {selected?.coverImage?.url && (
           <Image
@@ -125,46 +126,26 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
             alt={selected.name}
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
         )}
         {/* Overlay for title and children/items */}
-        <div className="absolute inset-0 flex flex-col items-start px-16 pt-16 bg-[#0A1633]/60">
+        <div className="absolute inset-0 flex flex-col items-start px-16 pt-16 bg-gradient-to-r from-[#000D2D] to-transparent opacity-90 z-10">
           <div className="text-3xl font-semibold mb-6">{selected?.name}</div>
           {selected?.children && selected.children.length > 0 && (
-            <div className="flex flex-col gap-2 w-full overflow-y-auto max-h-[200px] md:max-h-[300px]">
-              {selected.children.map((child) => (
-                <div
-                  key={child.id}
-                  className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
-                  style={{ minWidth: 0 }}
-                  onClick={() => selected && router.push(`/${selected.slug}/${child.slug}`)}
-                >
-                  <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
-                    {child.name}
-                  </span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-xl">&gt;</span>
-                </div>
-              ))}
-            </div>
+            <SubItemList
+              items={selected.children}
+              selectedId={undefined}
+              onClick={(child) => selected && router.push(`/${selected.slug}/${child.slug}`)}
+            />
           )}
           {selected?.items && selected.items.length > 0 && (
-            <div className="flex flex-col gap-2 mt-4 w-full overflow-y-auto max-h-[200px] md:max-h-[300px]">
-              {selected.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="group text-lg font-medium pb-2 cursor-pointer flex items-center w-fit hover:text-white transition-colors"
-                  style={{ minWidth: 0 }}
-                  onClick={() => selected && item.slug && router.push(`/${selected.slug}/${item.slug}`)}
-                >
-                  <span className="inline-block border-b border-white/60 group-hover:border-white transition-colors pb-1">
-                    {item.name}
-                  </span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-xl">&gt;</span>
-                </div>
-              ))}
-            </div>
+            <SubItemList
+              items={selected.items}
+              selectedId={undefined}
+              onClick={(item) => selected && item.slug && router.push(`/${selected.slug}/${item.slug}`)}
+            />
           )}
         </div>
       </div>
