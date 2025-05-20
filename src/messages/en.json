@@ -85,5 +85,10 @@
       "cookiesSettings": "Cookies Settings"
     },
     "copyright": "© GPB 2025"
+  },
+  "category": {
+    "notFound": "Category not found",
+    "loading": "Loading...",
+    "otherCategories": "Other Categories"
   }
 }

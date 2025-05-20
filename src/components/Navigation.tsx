@@ -7,25 +7,37 @@ import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { CategoriesDropdown } from './ProductsDropdown';
 import CategoriesIcon from './icons/CategoriesIcon';
+import { usePathname } from 'next/navigation';
 
 export function Navigation({ isHome = false }: { isHome?: boolean }) {
   const t = useTranslations('nav');
+  const pathname = usePathname();
 
-  const linkClass = isHome
-    ? 'opacity-70 hover:opacity-100 transition text-white'
-    : 'text-[#000D2D] cursor-pointer';
+  const isCategoryPage = pathname?.includes('/categories');
+  const isHomePage = pathname === '/' || isHome;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
+
+  const linkClass = isHome
+    ? 'opacity-70 hover:opacity-100 transition text-white'
+    : dropdownOpen
+    ? 'text-white cursor-pointer'
+    : 'text-[#000D2D] cursor-pointer';
 
   // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+      if (
+        (dropdownRef.current && dropdownRef.current.contains(event.target as Node)) ||
+        (buttonRef.current && buttonRef.current.contains(event.target as Node))
+      ) {
+        return;
       }
+      setDropdownOpen(false);
     }
     if (dropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -63,15 +75,26 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
             {/* Product & Services Dropdown */}
             <div className="relative">
               <button
-                className={linkClass + ' flex items-center gap-2 cursor-pointer'}
+                ref={buttonRef}
+                className={
+                  linkClass +
+                  ' flex items-center gap-2 cursor-pointer' +
+                  (isCategoryPage
+                    ? ' font-normal text-[16px] leading-[16px] tracking-[0] font-work-sans' + (dropdownOpen ? ' text-white' : ' text-[#000D2D]')
+                    : '')
+                }
                 onClick={() => setDropdownOpen((open) => !open)}
                 aria-haspopup="true"
                 aria-expanded={dropdownOpen}
                 type="button"
               >
-                <CategoriesIcon className="mr-2" />
+                {/* Only show CategoriesIcon on home page */}
+                {isHomePage && <CategoriesIcon className="mr-2" />}
                 {t('products')}
-                <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                {/* Only show chevron if not on home page */}
+                {!isHomePage && (
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                )}
               </button>
               <CategoriesDropdown open={dropdownOpen} dropdownRef={dropdownRef as React.RefObject<HTMLDivElement>} t={t} />
             </div>
@@ -92,7 +115,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
             <Link
               href="/contact"
               className={`hidden md:inline ${
-                isHome ? 'text-white' : 'text-[#000D2D] cursor-pointer'
+                isHome || dropdownOpen ? 'text-white' : 'text-[#000D2D] cursor-pointer'
               }`}
             >
               {t('contact')}

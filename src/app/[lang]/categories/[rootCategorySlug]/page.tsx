@@ -1,24 +1,23 @@
 import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { BASE_API } from '@/constants/api';
 import React from 'react';
 import CategoryGrid from '@/components/CategoryGrid';
 import { getTranslations } from 'next-intl/server';
+import { fetchCategory } from '@/hooks/useCategories';
 
-export default async function CategoryPage({ params }: { params: Promise<{ lang: string; rootCategorySlug: string; categorySlug: string }> }) {
+export default async function RootCategoryPage({ params }: { params: Promise<{ lang: string; rootCategorySlug: string }> }) {
   const resolvedParams = await params;
   const t = await getTranslations('category');
-  let data = null;
+  let categoryData;
   let error = null;
+  
   try {
-    const res = await fetch(`${BASE_API}/categories?slug=${resolvedParams.categorySlug}`, { next: { revalidate: 60 } });
-    if (!res.ok) throw new Error('Not found');
-    data = await res.json();
+    categoryData = await fetchCategory(resolvedParams.rootCategorySlug);
   } catch (e) {
     error = e;
   }
 
-  const category = Array.isArray(data) ? data[0] : data;
+  const category = Array.isArray(categoryData) ? categoryData[0] : categoryData;
   if (error || !category) return <div>{t('notFound')}</div>;
 
   return (

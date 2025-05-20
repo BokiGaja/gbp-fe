@@ -2,6 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_API } from '@/constants/api';
 
+export const fetchCategory = async (slug: string) => {
+  const res = await axios.get(`${BASE_API}/categories?slug=${slug}`);
+  return res.data;
+};
+
 export const useTopCategories = () => {
   return useQuery({
     queryKey: ['top-categories'],
@@ -22,12 +27,9 @@ export const useCategories = () => {
   });
 };
 
-export const useCategory = (id: string) => {
+export const useCategory = (slug: string) => {
   return useQuery({
-    queryKey: ['category', id],
-    queryFn: async () => {
-      const res = await axios.get(`${BASE_API}/categories/${id}`);
-      return res.data;
-    },
+    queryKey: ['category', slug],
+    queryFn: () => fetchCategory(slug),
   });
 }; 

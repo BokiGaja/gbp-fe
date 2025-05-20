@@ -85,5 +85,10 @@
       "cookiesSettings": "Podešavanja kolačića"
     },
     "copyright": "© GPB 2025"
+  },
+  "category": {
+    "notFound": "Kategorija nije pronađena",
+    "loading": "Učitavanje...",
+    "otherCategories": "Ostale kategorije"
   }
 }
