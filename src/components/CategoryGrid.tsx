@@ -12,6 +12,16 @@ interface CategoryGridProps {
   slug: string;
 }
 
+interface GridItem {
+  id?: string | number;
+  slug: string;
+  name: string;
+  type?: 'service' | 'item';
+  coverImage?: { url: string };
+  image?: { url: string };
+  children?: GridItem[];
+}
+
 export default function CategoryGrid({ slug }: CategoryGridProps) {
   const t = useTranslations();
   const params = useParams();
@@ -69,7 +79,7 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
           let href = '';
           if (isCategory) {
             href = buildCategoryPath({ ...item, parents: [...(category.parents || []), category] });
-          } else if ((item as any).type === 'service') {
+          } else if ((item as GridItem).type === 'service') {
             href = `/service/${item.slug}`;
           } else {
             href = `/items/${item.slug}`;
