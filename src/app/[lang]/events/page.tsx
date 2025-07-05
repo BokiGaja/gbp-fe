@@ -97,6 +97,14 @@ export default function EventsPage() {
                       </div>
                       <div className="text-white text-lg font-semibold">{event.title}</div>
                     </div>
+                    {/* Arrow button on hover */}
+                    <span className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                      <span className="w-12 h-12 bg-white/20 border border-white rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="h-6 w-6">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </span>
                   </div>
                 ))}
               </div>

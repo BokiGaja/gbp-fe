@@ -100,15 +100,15 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
                   priority={idx < 6}
                 />
               )}
-              {/* White overlay on hover */}
-              <div className="absolute inset-0 z-10 transition bg-transparent group-hover:bg-white/20" />
-              {/* Gradient overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 z-20" />
+              {/* Blue gradient overlay for text readability, fades out on hover */}
+              <div className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0" style={{height: '60%'}}>
+                <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
+              </div>
               <div className="relative z-30 p-6 flex items-center justify-between">
                 <span className="text-white text-lg font-[500] drop-shadow-md ml-4">{name}</span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="w-14 h-14 border border-[#B3B8C5] rounded-lg flex items-center justify-center">
-                    <ChevronRight size={32} className="text-white" />
+                  <span className="w-12 h-12 bg-white/20 border border-white rounded-full flex items-center justify-center">
+                    <ChevronRight size={24} className="text-white" />
                   </span>
                 </span>
               </div>
