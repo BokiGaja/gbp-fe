@@ -49,7 +49,7 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
     <>
       {/* Breadcrumbs */}
       <div className="mb-4">
-        <div className="flex items-center text-sm text-[#8B94A7] font-work-sans">
+        <div className="flex items-center text-sm text-[#8B94A7]">
           <Link href={`/${lang}`} className="hover:text-[#000D2D] transition-colors">
             {t('nav.home')}
           </Link>
@@ -67,7 +67,7 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl font-semibold mb-8 text-[#000D2D] font-work-sans">{category.name}</h1>
+      <h2 className="text-3xl md:text-4xl font-[500] mb-8 text-[#000D2D]">{category.name}</h2>
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[2px] mb-[100px]">
@@ -88,7 +88,7 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
             <Link
               key={item.id || idx}
               href={href}
-              className="relative group cursor-pointer overflow-hidden min-h-[220px] flex flex-col justify-end bg-[#0A1633] shadow-md"
+              className="relative group cursor-pointer overflow-hidden min-h-[220px] lg:min-h-[300px] flex flex-col justify-end bg-[#0A1633] shadow-md"
             >
               {imageUrl && (
                 <Image
@@ -105,7 +105,7 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
               {/* Gradient overlay for text readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 z-20" />
               <div className="relative z-30 p-6 flex items-center justify-between">
-                <span className="text-white text-lg font-semibold drop-shadow-md">{name}</span>
+                <span className="text-white text-lg font-[500] drop-shadow-md ml-4">{name}</span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="w-14 h-14 border border-[#B3B8C5] rounded-lg flex items-center justify-center">
                     <ChevronRight size={32} className="text-white" />
@@ -118,15 +118,15 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
       </div>
       {/* Other categories section */}
       <section className="w-full pb-12">
-        <h2 className="text-2xl font-semibold mb-4 text-[#000D2D] font-work-sans">{t('category.otherCategories')}</h2>
+        <h2 className="text-2xl font-[500] mb-6 text-[#000D2D]">{t('category.otherCategories')}</h2>
         <div className="flex flex-wrap gap-3">
           {rootCategories.map((cat: { id: string | number; slug: string; name: string }) => (
             <Link
               key={cat.id}
               href={`/${lang}/categories/${cat.slug}`}
-              className="group flex items-center px-6 h-[56px] rounded-xl bg-[#F7F8FA] font-work-sans text-[18px] transition-colors duration-150"
+              className="group flex items-center px-6 h-[56px] rounded-xl bg-[#F7F8FA] text-lg transition-colors duration-150"
             >
-              <span className="font-normal text-[#8B94A7] group-hover:text-[#000D2D] group-hover:font-medium transition-colors">
+              <span className="font-normal text-[#8B94A7] group-hover:text-[#000D2D] transition-colors">
                 {cat.name}
               </span>
               <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center">

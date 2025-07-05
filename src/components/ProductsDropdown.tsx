@@ -40,7 +40,7 @@ const SubItemList: React.FC<SubItemListProps> = ({ items, selectedId, onClick })
     {items.map((item, idx) => (
       <div
         key={item.id ?? idx}
-        className={`flex items-center h-[55px] gap-3 font-work-sans font-normal text-[16px] leading-[23px] tracking-normal text-[#B3B8C5] cursor-pointer group transition-colors hover:text-white ${selectedId === item.id ? 'font-semibold bg-[#16244A] text-white' : ''}`}
+        className={`flex items-center h-[55px] gap-3 font-normal text-[16px] leading-[23px] tracking-normal text-[#B3B8C5] cursor-pointer group transition-colors hover:text-white ${selectedId === item.id ? 'font-semibold bg-[#16244A] text-white' : ''}`}
         style={{ minWidth: 0 }}
         onClick={() => onClick(item)}
       >
