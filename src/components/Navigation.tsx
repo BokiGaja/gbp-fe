@@ -56,7 +56,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
     <nav
       className={`top-0 left-0 w-full z-50 h-[70px] ${
         dropdownOpen
-          ? 'text-white bg-[#0A1633]'
+          ? `ext-white bg-[#0A1633] ${isHome && 'absolute'}`
           : isHome
           ? 'text-white bg-transparent absolute'
           : 'text-[#000D2D] bg-white border-b border-[#000D2D]/8'

@@ -36,7 +36,7 @@ interface SubItemListProps {
 }
 
 const SubItemList: React.FC<SubItemListProps> = ({ items, selectedId, onClick }) => (
-  <div className="flex flex-col gap-2 w-full overflow-y-auto">
+  <div className="flex flex-col gap-2 w-full overflow-y-auto px-8 md:px-0">
     {items.map((item, idx) => (
       <div
         key={item.id ?? idx}
@@ -80,14 +80,18 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
       {isLoading || isError || !categories ? null : (
         <>
           {/* Left: Menu (full width on mobile, left column on desktop) */}
-          <div className="flex flex-col gap-2 px-8 py-12 w-full md:w-[340px] h-[70vh] min-h-[300px] md:h-full">
-            <div className="text-xl font-semibold mb-6">{t('products')}</div>
+          <div className="flex flex-col gap-2 py-12 w-full md:w-[340px] h-[70vh] min-h-[300px] md:h-full">
+            <div className="text-2xl font-[500] mb-6 px-8">{t('products')}</div>
             <div className="overflow-y-auto max-h-[60vh] md:max-h-[500px]">
               {rootCategories.map((cat: Category) => (
                 <div key={cat.id}>
                   <div
-                    className={`flex items-center justify-between px-2 py-2 rounded-lg transition-colors hover:bg-[#16244A] cursor-pointer ${selected?.id === cat.id ? 'bg-[#16244A]' : ''}`}
-                    onClick={() => setSelected(cat)}
+                    className={`flex px-8 cursor-pointer items-center justify-between py-4 transition-colors w-full
+                      ${selected?.id === cat.id
+                        ? 'bg-[#16244A] text-white'
+                        : 'text-[#B3B8C5] opacity-50 hover:opacity-100 hover:text-white cursor-pointer'}
+                    `}
+                    onMouseEnter={() => setSelected(cat)}
                   >
                     <span>{cat.name}</span>
                     {selected?.id === cat.id && (
@@ -138,7 +142,7 @@ export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dr
             )}
             {/* Overlay for title and children/items */}
             <div className="absolute inset-0 flex flex-col items-start px-16 pt-16 bg-gradient-to-r from-[#000D2D] to-transparent opacity-90 z-10">
-              <div className="text-3xl font-semibold mb-6">{selected?.name}</div>
+              <div className="text-2xl font-[500] mb-6">{selected?.name}</div>
               {selected?.children && selected.children.length > 0 && (
                 <SubItemList
                   items={selected.children}
