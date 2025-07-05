@@ -33,7 +33,33 @@
   },
   "about": {
     "title": "O nama",
-    "description": "Mi smo tim posvećen razvoju odličnog softvera"
+    "description": "Mi smo tim posvećen razvoju odličnog softvera",
+    "hero": {
+      "title": "Vojna kompanija koja je",
+      "title2": "licencirani lider u industriji",
+      "description": "Naša najsavremenija oklopna vozila pružaju neuporedivu zaštitu i performanse."
+    },
+    "meetOurFaces": {
+      "title": "Upoznajte naše ljude",
+      "coFounderGBP": "Suosnivač GBP-a",
+      "coFounderIdair": "Suosnivač Idair-a",
+      "coFounderDJSpot": "Suosnivač D.J. Spot-a"
+    },
+    "licensedLeader": {
+      "title": "Licencirani lider u",
+      "title2": "vojnoj industriji",
+      "seeLicense": "Pogledaj licencu",
+      "scrollLeft": "Skroluj levo",
+      "scrollRight": "Skroluj desno"
+    },
+    "ourLocations": {
+      "title": "Naše lokacije",
+      "centerLapovo": "Centar Lapovo",
+      "officeBelgrade": "Kancelarija Beograd",
+      "officeKragujevac": "Kancelarija Kragujevac",
+      "address": "Svetozara Markovica 44a",
+      "googleMap": "Google mapa"
+    }
   },
   "events": {
     "title": "Događaji"

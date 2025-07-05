@@ -1,28 +1,32 @@
-const faces = [
-  {
-    name: 'Budimir Gajic',
-    role: 'Co-Founder of GBP',
-    img: '/co-founder.png',
-    linkedin: 'https://linkedin.com/in/budimir-gajic-gbp',
-  },
-  {
-    name: 'Budimir Gajic',
-    role: 'Co-Founder of Idair',
-    img: '/co-founder.png',
-    linkedin: 'https://linkedin.com/in/budimir-gajic-idair',
-  },
-  {
-    name: 'Budimir Gajic',
-    role: 'Co-Founder of D.J. Spot',
-    img: '/co-founder.png',
-    linkedin: 'https://linkedin.com/in/budimir-gajic-djspot',
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function MeetOurFaces() {
+  const t = useTranslations('about.meetOurFaces');
+  
+  const faces = [
+    {
+      name: 'Budimir Gajic',
+      role: t('coFounderGBP'),
+      img: '/co-founder.png',
+      linkedin: 'https://linkedin.com/in/budimir-gajic-gbp',
+    },
+    {
+      name: 'Budimir Gajic',
+      role: t('coFounderIdair'),
+      img: '/co-founder.png',
+      linkedin: 'https://linkedin.com/in/budimir-gajic-idair',
+    },
+    {
+      name: 'Budimir Gajic',
+      role: t('coFounderDJSpot'),
+      img: '/co-founder.png',
+      linkedin: 'https://linkedin.com/in/budimir-gajic-djspot',
+    },
+  ];
+
   return (
     <section className="w-full bg-white py-12 md:py-20">
-      <h2 className="text-3xl md:text-4xl font-[500] text-[#0A1633] text-center mb-12">Meet our faces</h2>
+      <h2 className="text-3xl md:text-4xl font-[500] text-[#0A1633] text-center mb-12">{t('title')}</h2>
       <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {faces.map((face, i) => (
           <div

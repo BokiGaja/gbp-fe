@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
-const licenses = [
+export default function LicensedLeader() {
+  const t = useTranslations('about.licensedLeader');
+  
+  const licenses = [
   {
     image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=80&h=80&q=80',
     title: 'Plato X',
@@ -69,8 +73,6 @@ function LicenseIcon() {
     </svg>
   );
 }
-
-export default function LicensedLeader() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -124,7 +126,7 @@ export default function LicensedLeader() {
           className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
           style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
         >
-          <span className="hidden group-hover:inline" style={{ transition: 'none' }}>See license</span>
+          <span className="hidden group-hover:inline" style={{ transition: 'none' }}>{t('seeLicense')}</span>
           <LicenseIcon />
         </a>
       </div>
@@ -137,9 +139,9 @@ export default function LicensedLeader() {
     <section className="pt-20 md:pt-30 w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-8 md:mb-12 gap-3">
         <h2 className="text-3xl md:text-4xl text-[#000D2D] font-[500] mb-0 whitespace-pre-line m-0 mr-2">
-          Licensed Leader in
+          {t('title')}
           <br />
-          the Military Industry
+          {t('title2')}
         </h2>
         {/* Desktop progress bar and arrows */}
         <div className="hidden md:flex flex-row items-center md:flex-1 md:items-center w-full md:w-auto gap-3 mt-4 md:mt-0">
@@ -152,14 +154,14 @@ export default function LicensedLeader() {
           <button
             onClick={() => scrollBy(-420)}
             className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white ml-4 cursor-pointer"
-            aria-label="Scroll left"
+            aria-label={t('scrollLeft')}
           >
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
           <button
             onClick={() => scrollBy(420)}
             className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white cursor-pointer"
-            aria-label="Scroll right"
+            aria-label={t('scrollRight')}
           >
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
           </button>
@@ -184,14 +186,14 @@ export default function LicensedLeader() {
         <button
           onClick={() => scrollBy(-420)}
           className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white ml-4 cursor-pointer"
-          aria-label="Scroll left"
+          aria-label={t('scrollLeft')}
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
         <button
           onClick={() => scrollBy(420)}
           className="w-10 h-10 flex items-center justify-center border border-[#D1D5DB] rounded-lg text-2xl text-[#CBD0D8] hover:border-[#000D2D] hover:text-[#000D2D] bg-white cursor-pointer"
-          aria-label="Scroll right"
+          aria-label={t('scrollRight')}
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
         </button>

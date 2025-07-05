@@ -1,17 +1,21 @@
+import { useTranslations } from 'next-intl';
+
 export default function AboutHero() {
+  const t = useTranslations('about.hero');
+  
   return (
     <section className="w-full bg-white pb-12 md:pb-36">
       <div className="mx-auto flex flex-col md:flex-row items-center md:items-center tracking-wider">
         {/* Left: Text */}
         <div className="flex-1 min-w-[260px]">
           <h1 className="text-4xl md:text-5xl font-[500] text-[#000D2D] mb-6 leading-tight">
-            A military company that is
+            {t('title')}
             <span className="hidden md:inline"><br /></span>
             <span className="inline md:hidden"> </span>
-            a licensed industry leader
+            {t('title2')}
           </h1>
           <p className="text-[#000D2D] opacity-70 text-base md:text-l font-[400] max-w-md">
-            Our cutting-edge armored vehicles deliver unparalleled protection and performance.
+            {t('description')}
           </p>
         </div>
         {/* Right: Logos grid */}

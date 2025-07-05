@@ -33,7 +33,33 @@
   },
   "about": {
     "title": "About Us",
-    "description": "We are a team dedicated to building great software"
+    "description": "We are a team dedicated to building great software",
+    "hero": {
+      "title": "A military company that is",
+      "title2": "a licensed industry leader",
+      "description": "Our cutting-edge armored vehicles deliver unparalleled protection and performance."
+    },
+    "meetOurFaces": {
+      "title": "Meet our faces",
+      "coFounderGBP": "Co-Founder of GBP",
+      "coFounderIdair": "Co-Founder of Idair",
+      "coFounderDJSpot": "Co-Founder of D.J. Spot"
+    },
+    "licensedLeader": {
+      "title": "Licensed Leader in",
+      "title2": "the Military Industry",
+      "seeLicense": "See license",
+      "scrollLeft": "Scroll left",
+      "scrollRight": "Scroll right"
+    },
+    "ourLocations": {
+      "title": "Our locations",
+      "centerLapovo": "Center Lapovo",
+      "officeBelgrade": "Office Belgrade",
+      "officeKragujevac": "Office Kragujevac",
+      "address": "Svetozara Markovica 44a",
+      "googleMap": "Google map"
+    }
   },
   "events": {
     "title": "Events"
