@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useRef, useEffect, useState } from 'react';
 import { Users, Briefcase, Handshake } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -21,18 +23,66 @@ const ContactUs = () => {
   ];
 
   const subtitle = t('subtitle');
-  const firstLetter = subtitle.charAt(0);
-  const restOfText = subtitle.slice(1);
+  const title = t('title');
+  const subtitle2 = t('subtitle2');
+  const lines = [title, subtitle, subtitle2];
+  const lettersWithLine = lines.flatMap((line, lineIdx) =>
+    Array.from(line).map((char, charIdx) => ({ char, lineIdx, charIdx }))
+  );
+  const totalLetters = lettersWithLine.length;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0); // 0 to 1
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      // When top is at bottom of viewport: 0, when bottom is at top: 1
+      const totalHeight = rect.height + windowHeight;
+      let visible = 0;
+      if (rect.top > windowHeight) {
+        visible = 0;
+      } else if (rect.bottom < 0) {
+        visible = 1;
+      } else {
+        visible = 1 - (rect.bottom / totalHeight);
+      }
+      setProgress(Math.max(0, Math.min(1, visible)));
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   return (
-    <section className="w-full px-4 min-h-[60vh] flex flex-col items-center justify-center bg-[#f7f9f8] py-20 md:pt-60 md:pb-30">
+    <section ref={sectionRef} className="w-full px-4 min-h-[60vh] flex flex-col items-center justify-center bg-[#f7f9f8] py-20 md:pt-60 md:pb-30">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-normal text-[#000D2D] mb-4">
-          <span className="block">{t('title')}</span>
-          <span className="block text-[#CBD0D8] font-normal">
-            <span className="text-[#000D2D]">{firstLetter}</span>{restOfText}
-          </span>
-          <span className="block text-[#CBD0D8] font-normal">{t('subtitle2')}</span>
+        <h2 className="text-4xl md:text-5xl font-normal mb-4">
+          {[0, 1, 2].map(lineIdx => (
+            <span className="block font-normal" key={lineIdx}>
+              {lettersWithLine
+                .filter(l => l.lineIdx === lineIdx)
+                .map((l, idx) => {
+                  // Delay coloring: start at 18% scroll, finish at 48%
+                  let adjProgress = (progress - 0.18) / 0.3;
+                  adjProgress = Math.max(0, Math.min(adjProgress, 1));
+                  const blueCount = Math.round(adjProgress * totalLetters);
+                  // Find the global index of this letter in the flat array
+                  const globalIdx = lettersWithLine.findIndex(
+                    (ll, i) => i >= (lineIdx === 0 ? 0 : lines.slice(0, lineIdx).reduce((a, b) => a + b.length, 0)) && ll.lineIdx === lineIdx && ll.charIdx === l.charIdx
+                  );
+                  const color = globalIdx < blueCount ? '#000D2D' : '#CBD0D8';
+                  return (
+                    <span key={idx} style={{ color }}>{l.char}</span>
+                  );
+                })}
+            </span>
+          ))}
         </h2>
       </div>
       <div className="flex flex-col md:flex-row gap-10 w-full max-w-5xl justify-center items-center">
