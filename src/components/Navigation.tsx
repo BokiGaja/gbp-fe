@@ -16,6 +16,16 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
   const isCategoryPage = pathname?.includes('/categories');
   const isHomePage = pathname === '/' || isHome;
 
+  const handlePartnersClick = (e: React.MouseEvent) => {
+    if (isHomePage) {
+      e.preventDefault();
+      const partnersSection = document.getElementById('partners');
+      if (partnersSection) {
+        partnersSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -99,7 +109,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
               <CategoriesDropdown open={dropdownOpen} dropdownRef={dropdownRef as React.RefObject<HTMLDivElement>} t={t} />
             </div>
             {/* Other nav links */}
-            <Link href="/partners" className={linkClass}>
+            <Link href="/partners" className={linkClass} onClick={handlePartnersClick}>
               {t('partners')}
             </Link>
             <Link href="/events" className={linkClass}>
@@ -154,7 +164,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
                   >
                     {t('products')}
                   </button>
-                  <Link href="/partners" onClick={() => setMobileMenuOpen(false)}>{t('partners')}</Link>
+                  <Link href="/partners" onClick={(e) => { handlePartnersClick(e); setMobileMenuOpen(false); }}>{t('partners')}</Link>
                   <Link href="/events" onClick={() => setMobileMenuOpen(false)}>{t('events')}</Link>
                   <Link href="/about" onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
