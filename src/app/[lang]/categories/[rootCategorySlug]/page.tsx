@@ -1,16 +1,20 @@
 import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import React from 'react';
-import CategoryGrid from '@/components/CategoryGrid';
+import CategoryGrid from '@/components/categoryGrid/CategoryGrid';
 import { getTranslations } from 'next-intl/server';
 import { fetchCategory } from '@/hooks/useCategories';
 
-export default async function RootCategoryPage({ params }: { params: Promise<{ lang: string; rootCategorySlug: string }> }) {
+export default async function RootCategoryPage({
+  params,
+}: {
+  params: Promise<{ lang: string; rootCategorySlug: string }>;
+}) {
   const resolvedParams = await params;
   const t = await getTranslations('category');
   let categoryData;
   let error = null;
-  
+
   try {
     categoryData = await fetchCategory(resolvedParams.rootCategorySlug);
   } catch (e) {
@@ -29,4 +33,4 @@ export default async function RootCategoryPage({ params }: { params: Promise<{ l
       <Footer />
     </div>
   );
-} 
+}

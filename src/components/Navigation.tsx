@@ -4,16 +4,15 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import Image from 'next/image';
-import { useState, useRef, useEffect } from 'react';
-import { CategoriesDropdown } from './ProductsDropdown';
-import CategoriesIcon from './icons/CategoriesIcon';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { MobileNavigation } from './mobile/MobileNavigation';
+import { ProductsDropdown } from './ProductsDropdown';
 
 export function Navigation({ isHome = false }: { isHome?: boolean }) {
   const t = useTranslations('nav');
   const pathname = usePathname();
 
-  const isCategoryPage = pathname?.includes('/categories');
   const isHomePage = pathname === '/' || isHome;
 
   const handlePartnersClick = (e: React.MouseEvent) => {
@@ -27,40 +26,12 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
   };
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
 
   const linkClass = isHome
     ? 'opacity-70 hover:opacity-100 transition text-white'
     : dropdownOpen
-    ? 'text-white cursor-pointer'
-    : 'text-[#000D2D] cursor-pointer';
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        (dropdownRef.current && dropdownRef.current.contains(event.target as Node)) ||
-        (buttonRef.current && buttonRef.current.contains(event.target as Node))
-      ) {
-        return;
-      }
-      setDropdownOpen(false);
-    }
-    if (dropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('overflow-hidden');
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [dropdownOpen]);
+      ? 'text-white cursor-pointer'
+      : 'text-[#000D2D] cursor-pointer';
 
   return (
     <nav
@@ -68,8 +39,8 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
         dropdownOpen
           ? `ext-white bg-[#0A1633] ${isHome && 'absolute'}`
           : isHome
-          ? 'text-white bg-transparent absolute'
-          : 'text-[#000D2D] bg-white border-b border-[#000D2D]/8'
+            ? 'text-white bg-transparent absolute'
+            : 'text-[#000D2D] bg-white border-b border-[#000D2D]/8'
       }`}
     >
       <div className="mx-auto px-6 xl:px-12 h-full">
@@ -83,31 +54,12 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
           {/* Center: Navigation Links */}
           <div className="hidden md:flex space-x-10 text-m items-center">
             {/* Product & Services Dropdown */}
-            <div className="relative">
-              <button
-                ref={buttonRef}
-                className={
-                  linkClass +
-                  ' flex items-center gap-2 cursor-pointer' +
-                  (isCategoryPage
-                    ? ' font-normal text-[16px] leading-[16px] tracking-[0] font-work-sans' + (dropdownOpen ? ' text-white' : ' text-[#000D2D]')
-                    : '')
-                }
-                onClick={() => setDropdownOpen((open) => !open)}
-                aria-haspopup="true"
-                aria-expanded={dropdownOpen}
-                type="button"
-              >
-                {/* Only show CategoriesIcon on home page */}
-                {isHomePage && <CategoriesIcon className="mr-2" />}
-                {t('products')}
-                {/* Only show chevron if not on home page */}
-                {!isHomePage && (
-                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                )}
-              </button>
-              <CategoriesDropdown open={dropdownOpen} dropdownRef={dropdownRef as React.RefObject<HTMLDivElement>} t={t} />
-            </div>
+            <ProductsDropdown
+              isHome={isHome}
+              dropdownOpen={dropdownOpen}
+              setDropdownOpen={setDropdownOpen}
+              linkClass={linkClass}
+            />
             {/* Other nav links */}
             <Link href="/partners" className={linkClass} onClick={handlePartnersClick}>
               {t('partners')}
@@ -130,64 +82,8 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
             >
               {t('contact')}
             </Link>
-            {/* Hamburger menu icon for mobile */}
-            <button
-              className="block md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000D2D]"
-              aria-label="Open mobile menu"
-              onClick={() => setMobileMenuOpen(true)}
-              type="button"
-            >
-              <svg className="my-auto" width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="4" width="18" height="2" rx="1" fill={isHome ? 'white' : '#000D2D'}/>
-                <rect x="6" y="10" width="12" height="2" rx="1" fill={isHome ? 'white' : '#000D2D'}/>
-                <rect x="6" y="16" width="6" height="2" rx="1" fill={isHome ? 'white' : '#000D2D'}/>
-              </svg>
-            </button>
-            {/* Mobile menu overlay */}
-            {mobileMenuOpen && !mobileCategoriesOpen && (
-              <div className="fixed inset-0 z-50 bg-[#0A1633] bg-opacity-95 flex flex-col p-8 md:hidden">
-                <button
-                  className="self-end mb-8 p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
-                  aria-label="Close mobile menu"
-                  onClick={() => setMobileMenuOpen(false)}
-                  type="button"
-                >
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="7" y1="7" x2="21" y2="21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <line x1="21" y1="7" x2="7" y2="21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                </button>
-                <nav className="flex flex-col gap-6 text-xl text-white">
-                  <button
-                    className="text-left w-full py-2"
-                    onClick={() => setMobileCategoriesOpen(true)}
-                  >
-                    {t('products')}
-                  </button>
-                  <Link href="/partners" onClick={(e) => { handlePartnersClick(e); setMobileMenuOpen(false); }}>{t('partners')}</Link>
-                  <Link href="/events" onClick={() => setMobileMenuOpen(false)}>{t('events')}</Link>
-                  <Link href="/about" onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
-                </nav>
-              </div>
-            )}
-            {/* Mobile categories overlay */}
-            {mobileMenuOpen && mobileCategoriesOpen && (
-              <div className="fixed inset-0 z-50 bg-[#0A1633] bg-opacity-95 flex flex-col p-8 md:hidden">
-                <button
-                  className="self-start mb-8 p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
-                  aria-label="Back to mobile menu"
-                  onClick={() => setMobileCategoriesOpen(false)}
-                  type="button"
-                >
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="21" y1="14" x2="7" y2="14" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <polyline points="14,7 7,14 14,21" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <CategoriesDropdown open={true} dropdownRef={dropdownRef as React.RefObject<HTMLDivElement>} t={t} />
-              </div>
-            )}
+            {/* Mobile Navigation */}
+            <MobileNavigation isHome={isHome} onPartnersClick={handlePartnersClick} />
           </div>
         </div>
       </div>
