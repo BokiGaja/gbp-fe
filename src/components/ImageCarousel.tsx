@@ -31,13 +31,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, className = '' })
   return (
     <div className={`w-full ${className}`}>
       {/* Main Image */}
-      <div className="relative w-full h-[400px] lg:h-[500px] mb-6 overflow-hidden">
+      <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] mb-6 overflow-hidden">
         <Image
           src={selectedImage.url}
           alt={selectedImage.name}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           priority={selectedIndex === 0}
         />
       </div>
