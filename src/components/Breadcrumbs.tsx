@@ -9,9 +9,10 @@ import { Category } from '@/types/category';
 interface BreadcrumbsProps {
   lang: string;
   category: Category;
+  itemTitle?: string;
 }
 
-export default function Breadcrumbs({ lang, category }: BreadcrumbsProps) {
+const Breadcrumbs = ({ lang, category, itemTitle }: BreadcrumbsProps) => {
   const t = useTranslations();
 
   return (
@@ -32,8 +33,21 @@ export default function Breadcrumbs({ lang, category }: BreadcrumbsProps) {
             <ChevronRight size={16} className="mx-2" />
           </React.Fragment>
         ))}
-        <span className="text-[#000D2D] font-medium">{category.name}</span>
+        <Link
+          href={`/${lang}/categories/${category.slug}`}
+          className="hover:text-[#000D2D] transition-colors"
+        >
+          {category.name}
+        </Link>
+        {itemTitle && (
+          <>
+            <ChevronRight size={16} className="mx-2" />
+            <span className="text-[#8B94A7]">{itemTitle}</span>
+          </>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default Breadcrumbs;

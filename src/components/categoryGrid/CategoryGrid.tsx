@@ -10,6 +10,8 @@ import Breadcrumbs from '../Breadcrumbs';
 import CategoryGridItem from './CategoryGridItem';
 import { CategoryItem } from '@/types/grid';
 import { Category } from '@/types/category';
+import NotFound from '../NotFound';
+import LoadingPage from '../LoadingPage';
 
 interface CategoryGridProps {
   slug: string;
@@ -22,8 +24,8 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
   const { data: categoryData, isLoading: isCategoryLoading } = useCategory(slug);
   const { data: allCategories, isLoading: isAllLoading } = useCategories();
 
-  if (isCategoryLoading || isAllLoading) return <div>{t('category.loading')}</div>;
-  if (!categoryData || !allCategories) return <div>{t('category.notFound')}</div>;
+  if (isCategoryLoading || isAllLoading) return <LoadingPage showNavigation={false} />;
+  if (!categoryData || !allCategories) return <NotFound />;
 
   const category = Array.isArray(categoryData) ? categoryData[0] : categoryData;
   // Only root categories (no parents or parents.length === 0), excluding current

@@ -116,5 +116,14 @@
     "notFound": "Kategorija nije pronađena",
     "loading": "Učitavanje...",
     "otherCategories": "Ostale kategorije"
+  },
+  "item": {
+    "notFound": "Artikal nije pronađen",
+    "loading": "Učitavanje...",
+    "description": "Opis",
+    "watchVideo": "Pogledaj video",
+    "notFoundMessage": "Artikal koji tražite ne postoji ili je premesten.",
+    "goBack": "Nazad",
+    "goHome": "Početna"
   }
 }

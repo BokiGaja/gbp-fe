@@ -7,6 +7,11 @@ export const fetchCategory = async (slug: string) => {
   return res.data;
 };
 
+export const fetchItem = async (slug: string) => {
+  const res = await axios.get(`${BASE_API}/items?slug=${slug}`);
+  return res.data;
+};
+
 export const useTopCategories = () => {
   return useQuery({
     queryKey: ['top-categories'],
@@ -32,4 +37,11 @@ export const useCategory = (slug: string) => {
     queryKey: ['category', slug],
     queryFn: () => fetchCategory(slug),
   });
-}; 
+};
+
+export const useItem = (slug: string) => {
+  return useQuery({
+    queryKey: ['item', slug],
+    queryFn: () => fetchItem(slug),
+  });
+};

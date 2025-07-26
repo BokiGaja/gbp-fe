@@ -116,5 +116,14 @@
     "notFound": "Category not found",
     "loading": "Loading...",
     "otherCategories": "Other Categories"
+  },
+  "item": {
+    "notFound": "Item not found",
+    "loading": "Loading...",
+    "description": "Description",
+    "watchVideo": "Watch video",
+    "notFoundMessage": "The item you're looking for doesn't exist or has been moved.",
+    "goBack": "Go back",
+    "goHome": "Go home"
   }
 }
