@@ -6,10 +6,10 @@ const locales = ['en', 'sr-Latn'] as const;
 
 export default getRequestConfig(async ({locale}) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as typeof locales[number])) notFound();
+  if (!locale || !locales.includes(locale as typeof locales[number])) notFound();
 
   return {
-    locale,
+    locale: locale as string,
     messages: (await import(`../../public/locales/${locale}/common.json`)).default
   };
 }); 
