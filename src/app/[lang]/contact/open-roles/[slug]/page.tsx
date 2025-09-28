@@ -4,9 +4,15 @@ import React from 'react';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 
-const RolePage = ({ params }: { params: { slug: string } }) => {
-    // Format slug to be a title, e.g. "mechanical-design-engineer-1" -> "Mechanical Design Engineer"
-    const roleTitle = params.slug
+export default async function RolePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const resolvedParams = await params;
+  
+  // Format slug to be a title, e.g. "mechanical-design-engineer-1" -> "Mechanical Design Engineer"
+  const roleTitle = resolvedParams.slug
         .split('-')
         .slice(0, -1)
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -77,6 +83,4 @@ const RolePage = ({ params }: { params: { slug: string } }) => {
             <Footer />
         </div>
     );
-};
-
-export default RolePage; 
+}; 
