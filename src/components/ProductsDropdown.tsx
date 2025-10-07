@@ -70,11 +70,10 @@ export function ProductsDropdown({
         aria-expanded={dropdownOpen}
         type="button"
       >
-        {/* Only show CategoriesIcon on home page */}
-        {isHomePage && <CategoriesIcon className="mr-2" />}
+        {/* Always show the lines icon */}
+        <CategoriesIcon className="mr-2" />
         {t('products')}
-        {/* Only show chevron if not on home page */}
-        {!isHomePage && <ChevronDownIcon className="mr-2" />}
+        {/* Chevron removed to keep a consistent icon */}
       </button>
       <CategoriesDropdown
         open={dropdownOpen}
