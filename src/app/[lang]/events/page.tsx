@@ -7,10 +7,12 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import LoadingPage from '@/components/LoadingPage';
 import NotFound from '@/components/NotFound';
+import { useParams, useRouter } from 'next/navigation';
 
 type Event = {
   id?: string | number;
   title: string;
+  slug: string;
   createdAt: string;
   coverImage?: { url?: string };
 };
@@ -28,6 +30,9 @@ function groupEventsByMonth(events: Event[]) {
 export default function EventsPage() {
   const { data, isLoading, error } = useEvents();
   const t = useTranslations('events');
+  const params = useParams();
+  const lang = params.lang as string;
+  const router = useRouter();
 
   if (isLoading) return <LoadingPage />;
   if (error) return <NotFound />;
@@ -36,6 +41,10 @@ export default function EventsPage() {
   // Featured event is the first one
   const [featured, ...rest] = data;
   const grouped = groupEventsByMonth(rest);
+
+  const handleEventClick = (slug: string) => {
+    router.push(`/${lang}/events/${slug}`);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -46,11 +55,14 @@ export default function EventsPage() {
         </h2>
         {/* Featured event */}
         {featured && (
-          <div className="relative w-full h-[400px] md:h-[630px] overflow-hidden mb-12 cursor-pointer group">
+          <div
+            className="relative w-full h-[400px] md:h-[630px] overflow-hidden mb-12 cursor-pointer group"
+            onClick={() => handleEventClick(featured.slug)}
+          >
             <img
               src={featured.coverImage?.url || ''}
               alt={featured.title}
-              className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105"
+              className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105 pointer-events-none"
             />
             <div
               className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
@@ -58,7 +70,7 @@ export default function EventsPage() {
             >
               <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
             </div>
-            <div className="absolute bottom-0 left-0 w-full p-8">
+            <div className="absolute bottom-0 left-0 w-full p-8 pointer-events-none">
               <div className="text-white opacity-70 text-md mb-2">
                 {new Date(featured.createdAt).toLocaleDateString()}
               </div>
@@ -69,6 +81,10 @@ export default function EventsPage() {
             <button
               className="absolute bottom-6 right-6 w-12 h-12 flex items-center justify-center border border-white rounded-md bg-white/20 z-10 transition-colors duration-150 cursor-pointer"
               type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (featured.slug) handleEventClick(featured.slug);
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,11 +116,12 @@ export default function EventsPage() {
                   <div
                     key={event.id || idx}
                     className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full md:max-w-[450px]"
+                    onClick={() => handleEventClick(event.slug || '')}
                   >
                     <img
                       src={event.coverImage?.url || ''}
                       alt={event.title}
-                      className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105"
+                      className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105 pointer-events-none"
                     />
                     <div
                       className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
@@ -112,14 +129,21 @@ export default function EventsPage() {
                     >
                       <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
                     </div>
-                    <div className="absolute bottom-0 left-0 w-full p-4">
+                    <div className="absolute bottom-0 left-0 w-full p-4 pointer-events-none">
                       <div className="text-white opacity-80 text-xs mb-1">
                         {new Date(event.createdAt).toLocaleDateString()}
                       </div>
                       <div className="text-white text-lg font-semibold">{event.title}</div>
                     </div>
                     {/* Arrow button on hover */}
-                    <span className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <button
+                      type="button"
+                      className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (event.slug) handleEventClick(event.slug);
+                      }}
+                    >
                       <span className="w-12 h-12 bg-white/20 border border-white rounded-full flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +156,7 @@ export default function EventsPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
                       </span>
-                    </span>
+                    </button>
                   </div>
                 ))}
               </div>
