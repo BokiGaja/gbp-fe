@@ -13,11 +13,17 @@ interface LogoImage {
   };
 }
 
+interface LicenseFile {
+  url: string;
+  name?: string;
+}
+
 interface License {
   logo: LogoImage | string;
   title: string;
   description: string;
   link: string;
+  licenseFile?: LicenseFile;
 }
 
 function LicenseIcon() {
@@ -53,11 +59,17 @@ export default function LicensedLeader() {
           license.logo.url ||
           '';
       }
+      // Extract license file URL
+      const fileUrl = license.licenseFile?.url || '';
+      const fileName = license.licenseFile?.name || 'license.pdf';
+
       return {
         image: logoUrl,
         title: license.title,
         description: license.description,
         link: license.link,
+        fileUrl,
+        fileName,
       };
     });
   }, [data]);
@@ -100,8 +112,41 @@ export default function LicensedLeader() {
     }
   };
 
+  const handleDownload = async (fileUrl: string, fileName: string) => {
+    if (!fileUrl) return;
+
+    try {
+      // Fetch the file
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+
+      // Create a blob URL and trigger download
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Clean up the blob URL
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      // Fallback: open in new tab if download fails
+      window.open(fileUrl, '_blank');
+    }
+  };
+
   const renderLicenseCard = (
-    license: { image: string; title: string; description: string; link: string },
+    license: {
+      image: string;
+      title: string;
+      description: string;
+      link: string;
+      fileUrl: string;
+      fileName: string;
+    },
     idx: number
   ) => (
     <div
@@ -119,18 +164,17 @@ export default function LicensedLeader() {
             </div>
           </div>
         )}
-        <a
-          href={license.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8]"
+        <button
+          onClick={() => license.fileUrl && handleDownload(license.fileUrl, license.fileName)}
+          disabled={!license.fileUrl}
+          className="ml-4 mr-2 z-10 flex items-center px-6 py-3 rounded-lg font-[400] text-md gap-2 bg-transparent group-hover:bg-[#E8E8E8] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           style={{ color: '#000D2D', boxShadow: 'none', transition: 'none' }}
         >
           <span className="hidden group-hover:inline" style={{ transition: 'none' }}>
             {t('seeLicense')}
           </span>
           <LicenseIcon />
-        </a>
+        </button>
       </div>
       <h3 className="text-[24px] font-[500] text-[#000D2D] pt-4 px-8 pb-0 m-0 z-10">
         {license.title}
