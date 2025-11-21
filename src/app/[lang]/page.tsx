@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 import Hero from './home/Hero';
 import Products from '@/app/[lang]/home/Products';
@@ -8,6 +11,19 @@ import Events from './home/Events';
 import Footer from '@/components/Footer';
 
 export default function HomePage() {
+  useEffect(() => {
+    // Handle hash navigation - scroll to partners section if hash is present
+    if (window.location.hash === '#partners') {
+      // Small delay to ensure the component is rendered
+      setTimeout(() => {
+        const partnersSection = document.getElementById('partners');
+        if (partnersSection) {
+          partnersSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
+
   return (
     <>
       <Navigation isHome={true} />

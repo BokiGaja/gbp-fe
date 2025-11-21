@@ -47,7 +47,7 @@ export function MobileNavigation({ isHome, onPartnersClick }: MobileNavigationPr
               {t('products')}
             </button>
             <Link
-              href="/partners"
+              href="/#partners"
               onClick={(e) => {
                 onPartnersClick(e);
                 setMobileMenuOpen(false);

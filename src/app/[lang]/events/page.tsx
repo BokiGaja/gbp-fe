@@ -36,7 +36,22 @@ export default function EventsPage() {
 
   if (isLoading) return <LoadingPage />;
   if (error) return <NotFound />;
-  if (!data || !data.length) return <NotFound />;
+  
+  // If no data, show empty state instead of 404
+  if (!data || !data.length) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navigation />
+        <main className="flex-1 px-4 py-12 bg-white">
+          <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12">
+            {t('title')}
+          </h2>
+          <p className="text-[#000D2D] opacity-70">No events available.</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   // Featured event is the first one
   const [featured, ...rest] = data;

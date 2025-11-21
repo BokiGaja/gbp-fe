@@ -5,15 +5,18 @@ import { Link } from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import Image from 'next/image';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useParams } from 'next/navigation';
 import { MobileNavigation } from './mobile/MobileNavigation';
 import { ProductsDropdown } from './ProductsDropdown';
 
 export function Navigation({ isHome = false }: { isHome?: boolean }) {
   const t = useTranslations('nav');
   const pathname = usePathname();
+  const params = useParams();
+  const lang = params.lang as string;
 
-  const isHomePage = pathname === '/' || isHome;
+  const isHomePage =
+    pathname === '/' || pathname === `/${lang}` || pathname === `/${lang}/` || isHome;
 
   const handlePartnersClick = (e: React.MouseEvent) => {
     if (isHomePage) {
@@ -61,7 +64,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
               linkClass={linkClass}
             />
             {/* Other nav links */}
-            <Link href="/partners" className={linkClass} onClick={handlePartnersClick}>
+            <Link href="/#partners" className={linkClass} onClick={handlePartnersClick}>
               {t('partners')}
             </Link>
             <Link href="/events" className={linkClass}>
