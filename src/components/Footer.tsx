@@ -95,7 +95,11 @@ const Footer = () => {
               <div className="text-white/50">Loading...</div>
             ) : topCategories.length > 0 ? (
               topCategories.map((category: Category) => {
-                const categoryPath = buildCategoryPath(category, lang);
+                // Build path without lang since Link component handles locale
+                const slugs = category?.parents
+                  ? [...category.parents.map((p) => p.slug), category.slug]
+                  : [category.slug];
+                const categoryPath = `/categories/${slugs.join('/')}`;
                 return (
                   <Link
                     key={category.id || category.slug}
