@@ -14,17 +14,17 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="font-['Work_Sans'] font-[500] text-[32px] leading-[100%] tracking-[0%] text-[#000D2D] mb-6">
+            <h1 className="font-['Work_Sans'] font-[500] text-[32px] leading-[100%] tracking-[0%] text-[#000D2D] mb-6 text-center">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="font-['Work_Sans'] font-[500] text-[24px] leading-[100%] tracking-[0%] text-[#000D2D] mb-4">
+            <h2 className="font-['Work_Sans'] font-[500] text-[24px] leading-[100%] tracking-[0%] text-[#000D2D] mb-4 text-center">
               {children}
             </h2>
           ),
           p: ({ children }) => (
-            <p className="font-['Work_Sans'] font-[500] text-[16px] leading-[23px] tracking-[0%] text-[#000D2D]/70 mb-4">
+            <p className="font-['Merriweather',serif] font-[400] text-[16px] leading-[28px] tracking-[0%] text-[#000D2D]/70 mb-4 text-justify">
               {children}
             </p>
           ),
@@ -40,12 +40,12 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
             );
           },
           ul: ({ children }) => (
-            <ul className="font-['Work_Sans'] font-[500] text-[16px] leading-[23px] tracking-[0%] text-[#000D2D]/70 mb-4 list-disc list-inside">
+            <ul className="font-['Merriweather',serif] font-[400] text-[16px] leading-[28px] tracking-[0%] text-[#000D2D]/70 mb-4 list-disc pl-6 text-justify">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="font-['Work_Sans'] font-[500] text-[16px] leading-[23px] tracking-[0%] text-[#000D2D]/70 mb-4 list-decimal list-inside">
+            <ol className="font-['Merriweather',serif] font-[400] text-[16px] leading-[28px] tracking-[0%] text-[#000D2D]/70 mb-4 list-decimal pl-6 text-justify">
               {children}
             </ol>
           ),
@@ -65,7 +65,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
             </a>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-[#000D2D]/20 pl-4 italic text-[#000D2D]/80 mb-4">
+            <blockquote className="font-['Merriweather',serif] border-l-4 border-[#000D2D]/20 pl-4 italic text-[#000D2D]/80 mb-4 text-justify">
               {children}
             </blockquote>
           ),

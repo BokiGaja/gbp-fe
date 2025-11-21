@@ -51,14 +51,14 @@ const EventPage = () => {
           )}
 
           {/* Description */}
-          {event.description && (
+          {/* {event.description && (
             <div className="flex justify-center mb-8 md:mb-12">
               <div
                 className="max-w-3xl font-sans text-[#000D2D] prose prose-lg [&>h3]:text-3xl [&>h3]:font-[500] [&>h3]:mb-6 [&>h3]:mt-8 [&>h4]:font-[500] [&>h4]:text-xl [&>h4]:text-[#000D2D]/70 [&>h4]:mb-4 [&>h4]:mt-6 [&>p]:text-base [&>p]:leading-8 [&>p]:text-[#000D2D]/70 [&>p]:mb-4 [&>p+*]:mt-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mt-2 [&_ul]:mb-6 [&_ul]:text-base [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mt-2 [&_ol]:mb-6 [&_ol]:text-base [&_li]:text-base [&_li]:leading-8 [&_li]:text-[#000D2D]/70 [&_a]:text-[#000D2D] [&_a]:underline [&_a]:hover:text-[#000D2D]/80 [&_strong]:text-[#000D2D] [&_strong]:font-[600] [&_em]:text-[#000D2D]/70"
                 dangerouslySetInnerHTML={{ __html: event.description || '' }}
               />
             </div>
-          )}
+          )} */}
 
           {/* Content (Markdown) */}
           {event.content && (
