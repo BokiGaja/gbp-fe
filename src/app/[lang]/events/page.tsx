@@ -36,7 +36,7 @@ export default function EventsPage() {
 
   if (isLoading) return <LoadingPage />;
   if (error) return <NotFound />;
-  
+
   // If no data, show empty state instead of 404
   if (!data || !data.length) {
     return (
@@ -60,6 +60,7 @@ export default function EventsPage() {
   const handleEventClick = (slug: string) => {
     router.push(`/${lang}/events/${slug}`);
   };
+  console.log('grouped', grouped);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -71,7 +72,7 @@ export default function EventsPage() {
         {/* Featured event */}
         {featured && (
           <div
-            className="relative w-full h-[400px] md:h-[630px] overflow-hidden mb-12 cursor-pointer group"
+            className="relative w-full h-[300px] md:h-[450px] overflow-hidden mb-12 cursor-pointer group"
             onClick={() => handleEventClick(featured.slug)}
           >
             <img
@@ -117,20 +118,15 @@ export default function EventsPage() {
         {/* Grouped events by month/year */}
         <div className="border-t border-[#000D2D]/8">
           {Object.entries(grouped).map(([month, events]) => (
-            <div
-              key={month}
-              className="flex flex-col md:flex-row items-start gap-2 md:gap-8s border-b border-[#000D2D]/8 py-12 last:border-b-0"
-            >
-              {/* Date label */}
-              <div className="w-full md:w-64 text-[#000D2D] opacity-70 text-lg font-[500] flex-shrink-0 mb-2 md:mb-0">
-                {month}
-              </div>
+            <div key={month} className="border-b border-[#000D2D]/8 py-12 last:border-b-0">
+              {/* Month/Year label above events */}
+              <div className="text-[#000D2D] text-2xl md:text-3xl font-[500] mb-8">{month}</div>
               {/* Events grid */}
               <div className="flex flex-row flex-wrap gap-1 justify-start w-full">
                 {events.map((event, idx) => (
                   <div
                     key={event.id || idx}
-                    className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full md:max-w-[450px]"
+                    className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full md:max-w-[320px]"
                     onClick={() => handleEventClick(event.slug || '')}
                   >
                     <img
