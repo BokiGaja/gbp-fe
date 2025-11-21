@@ -60,7 +60,6 @@ export default function EventsPage() {
   const handleEventClick = (slug: string) => {
     router.push(`/${lang}/events/${slug}`);
   };
-  console.log('grouped', grouped);
 
   return (
     <div className="flex flex-col min-h-screen">
