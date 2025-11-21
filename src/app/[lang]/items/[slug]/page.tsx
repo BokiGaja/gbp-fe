@@ -16,7 +16,7 @@ const ItemPage = () => {
   const slug = params.slug as string;
   const lang = params.lang as string;
 
-  const { data: itemData, isLoading, error } = useItem(slug);
+  const { data: itemData, isLoading, error } = useItem(slug, lang);
   const item = Array.isArray(itemData) ? itemData[0] : itemData;
 
   if (isLoading) {

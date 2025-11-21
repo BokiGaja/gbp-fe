@@ -28,10 +28,10 @@ function groupEventsByMonth(events: Event[]) {
 }
 
 export default function EventsPage() {
-  const { data, isLoading, error } = useEvents();
-  const t = useTranslations('events');
   const params = useParams();
   const lang = params.lang as string;
+  const { data, isLoading, error } = useEvents(lang);
+  const t = useTranslations('events');
   const router = useRouter();
 
   if (isLoading) return <LoadingPage />;

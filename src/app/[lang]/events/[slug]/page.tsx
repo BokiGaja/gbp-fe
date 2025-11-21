@@ -15,7 +15,7 @@ const EventPage = () => {
   const slug = params.slug as string;
   const lang = params.lang as string;
 
-  const { data: eventData, isLoading, error } = useEvent(slug);
+  const { data: eventData, isLoading, error } = useEvent(slug, lang);
   const event = Array.isArray(eventData) ? eventData[0] : eventData;
 
   if (isLoading) {

@@ -26,9 +26,9 @@ interface Event {
 
 const Events = () => {
   const t = useTranslations('home.events');
-  const { data, isLoading, isError } = useTopEvents();
   const params = useParams();
   const lang = params.lang as string;
+  const { data, isLoading, isError } = useTopEvents(lang);
   const router = useRouter();
 
   // Memoize the items array from API data

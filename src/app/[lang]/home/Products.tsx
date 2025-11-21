@@ -1,6 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { useTopCategories } from '@/hooks/useCategories';
 import ProductCard from '@/components/ProductCard';
 import { Category } from '@/types/category';
@@ -13,7 +14,9 @@ export type ProductItem = {
 
 const Products = () => {
   const t = useTranslations('home');
-  const { data, isLoading, isError } = useTopCategories();
+  const params = useParams();
+  const lang = params.lang as string;
+  const { data, isLoading, isError } = useTopCategories(lang);
 
   // Memoize the items array from API data
   const items = useMemo(() => {
@@ -23,7 +26,7 @@ const Products = () => {
       image: cat.coverImage?.formats?.small?.url || cat.coverImage?.formats?.thumbnail?.url || '',
       slug: cat.slug,
     }));
-  }, [data]);
+  }, [data, lang]);
 
   if (isLoading)
     return (

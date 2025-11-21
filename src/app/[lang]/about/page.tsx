@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -6,6 +6,7 @@ import AboutHero from './AboutHero';
 import MeetOurFaces from './MeetOurFaces';
 import LicensedLeader from './LicensedLeader';
 import OurLocations from './OurLocations';
+import AboutGallery from './AboutGallery';
 
 export default function AboutUsPage() {
   return (
@@ -16,8 +17,9 @@ export default function AboutUsPage() {
         <MeetOurFaces />
         <LicensedLeader />
         <OurLocations />
+        <AboutGallery />
       </main>
       <Footer />
     </div>
   );
-} 
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCategories } from '@/hooks/useCategories';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 import { Category } from '@/types/category';
 import ArrowRightIcon from './icons/ArrowRightIcon';
@@ -46,7 +46,9 @@ const SubItemList: React.FC<SubItemListProps> = ({ items, selectedId, onClick })
 );
 
 export const CategoriesDropdown: React.FC<CategoriesDropdownProps> = ({ open, dropdownRef, t }) => {
-  const { data: categories, isLoading, isError } = useCategories();
+  const params = useParams();
+  const locale = params.lang as string;
+  const { data: categories, isLoading, isError } = useCategories(locale);
   const [selected, setSelected] = useState<Category | null>(null);
   const router = useRouter();
 

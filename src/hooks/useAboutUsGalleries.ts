@@ -3,16 +3,17 @@ import axios from 'axios';
 import { BASE_API } from '@/constants/api';
 import { mapLocaleForAPI } from '@/utils/locale';
 
-export const useTopEvents = (locale?: string) => {
+export const useAboutUsGalleries = (locale?: string) => {
   return useQuery({
-    queryKey: ['top-events', locale],
+    queryKey: ['about-us-galleries', locale],
     queryFn: async () => {
       const apiLocale = locale ? mapLocaleForAPI(locale) : undefined;
-      const url = apiLocale
-        ? `${BASE_API}/top-events?locale=${apiLocale}`
-        : `${BASE_API}/top-events`;
+      const url = apiLocale 
+        ? `${BASE_API}/about-us-galleries?locale=${apiLocale}`
+        : `${BASE_API}/about-us-galleries`;
       const res = await axios.get(url);
       return res.data;
     },
   });
-}; 
+};
+

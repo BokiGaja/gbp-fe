@@ -59,6 +59,9 @@
       "officeKragujevac": "Kancelarija Kragujevac",
       "address": "Svetozara Markovica 44a",
       "googleMap": "Google mapa"
+    },
+    "gallery": {
+      "title": "Galerija"
     }
   },
   "events": {

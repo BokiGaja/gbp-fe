@@ -21,8 +21,8 @@ export default function CategoryGrid({ slug }: CategoryGridProps) {
   const t = useTranslations();
   const params = useParams();
   const lang = params.lang as string;
-  const { data: categoryData, isLoading: isCategoryLoading } = useCategory(slug);
-  const { data: allCategories, isLoading: isAllLoading } = useCategories();
+  const { data: categoryData, isLoading: isCategoryLoading } = useCategory(slug, lang);
+  const { data: allCategories, isLoading: isAllLoading } = useCategories(lang);
 
   if (isCategoryLoading || isAllLoading) return <LoadingPage showNavigation={false} />;
   if (!categoryData || !allCategories) return <NotFound />;

@@ -1,21 +1,29 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
+import { useAboutUsGalleries } from '@/hooks/useAboutUsGalleries';
+import { useParams } from 'next/navigation';
 
 export default function AboutHero() {
   const t = useTranslations('about.hero');
-  
+  const params = useParams();
+  const locale = params.lang as string;
+  const { data } = useAboutUsGalleries(locale);
+
+  // Fallback to translations if no data
+  const title = data?.title || t('title');
+  const description = data?.description || t('description');
+
   return (
     <section className="w-full bg-white pb-12 md:pb-36">
       <div className="mx-auto flex flex-col md:flex-row items-center md:items-center tracking-wider">
         {/* Left: Text */}
         <div className="flex-1 min-w-[260px]">
           <h1 className="text-4xl md:text-5xl font-[500] text-[#000D2D] mb-6 leading-tight">
-            {t('title')}
-            <span className="hidden md:inline"><br /></span>
-            <span className="inline md:hidden"> </span>
-            {t('title2')}
+            {title}
           </h1>
           <p className="text-[#000D2D] opacity-70 text-base md:text-l font-[400] max-w-md">
-            {t('description')}
+            {description}
           </p>
         </div>
         {/* Right: Logos grid */}
@@ -37,4 +45,4 @@ export default function AboutHero() {
       </div>
     </section>
   );
-} 
+}

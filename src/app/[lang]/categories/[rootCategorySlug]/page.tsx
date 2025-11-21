@@ -17,7 +17,7 @@ export default async function RootCategoryPage({
   let isLoading = false;
 
   try {
-    categoryData = await fetchCategory(resolvedParams.rootCategorySlug);
+    categoryData = await fetchCategory(resolvedParams.rootCategorySlug, resolvedParams.lang);
     isLoading = true;
   } catch (e) {
     error = e;
