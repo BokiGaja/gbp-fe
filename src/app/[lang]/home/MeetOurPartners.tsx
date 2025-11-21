@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { usePartners } from '@/hooks/usePartners';
 
@@ -26,7 +27,9 @@ export default function MeetOurPartners() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const t = useTranslations('home');
-  const { data, isLoading, isError } = usePartners();
+  const params = useParams();
+  const lang = params.lang as string;
+  const { data, isLoading, isError } = usePartners(lang);
 
   // Map API response to component format
   const partners = useMemo(() => {
