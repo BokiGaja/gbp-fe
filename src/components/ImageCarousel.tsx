@@ -97,7 +97,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           src={selectedImage.url}
           alt={selectedImage.name}
           fill
-          className="object-cover transition-opacity duration-500"
+          className="object-contain transition-opacity duration-500"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           priority={selectedIndex === 0}
         />
