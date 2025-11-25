@@ -57,7 +57,9 @@
       "centerLapovo": "Centar Lapovo",
       "officeBelgrade": "Kancelarija Beograd",
       "officeKragujevac": "Kancelarija Kragujevac",
-      "address": "Svetozara Markovica 44a",
+      "addressKragujevac": "Dr Zorana Đinđića 15a, Kragujevac",
+      "addressLapovo": "Kapetana Koče Anđelkovića 4, Lapovo",
+      "addressBelgrade": "SZ Janicija Živanovića 19, Beograd",
       "googleMap": "Google mapa"
     },
     "gallery": {

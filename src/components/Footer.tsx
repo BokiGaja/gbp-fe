@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useParams, usePathname } from 'next/navigation';
 import { useTopCategories } from '@/hooks/useCategories';
-import { buildCategoryPath } from '@/utils/routes';
 import { Category } from '@/types/category';
 
 const Footer = () => {
@@ -27,6 +26,9 @@ const Footer = () => {
       if (partnersSection) {
         partnersSection.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      // If navigating from another page, the hash will be in the URL
+      // The home page will handle scrolling via useEffect
     }
   };
 
@@ -126,7 +128,7 @@ const Footer = () => {
               {t('links.events')}
             </Link>
             <Link
-              href="/"
+              href="/#partners"
               className="text-white/50 no-underline hover:text-white transition-colors"
               onClick={handlePartnersClick}
             >

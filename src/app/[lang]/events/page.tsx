@@ -53,12 +53,101 @@ export default function EventsPage() {
     );
   }
 
-  // Featured event is the first one
-  const [featured, ...rest] = data;
-  const grouped = groupEventsByMonth(rest);
+  const grouped = groupEventsByMonth(data);
 
   const handleEventClick = (slug: string) => {
     router.push(`/${lang}/events/${slug}`);
+  };
+
+  // Helper function to render events in the same grid layout as Events.tsx
+  const renderEventGrid = (events: Event[]) => {
+    const grids = [];
+    for (let i = 0; i < events.length; i += 3) {
+      const batch = events.slice(i, i + 3);
+      const [first, second, third] = batch;
+
+      grids.push(
+        <div key={i} className="grid md:grid-cols-2 gap-1 mb-1">
+          {/* Left large event */}
+          {first && (
+            <div
+              className="relative md:row-span-2 max-h-[604px] h-[300px] md:h-[604px] overflow-hidden cursor-pointer group bg-white"
+              onClick={() => handleEventClick(first.slug)}
+            >
+              <img
+                src={first.coverImage?.url || ''}
+                alt={first.title}
+                className="w-full h-full object-cover max-h-[604px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
+              />
+              <div
+                className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
+                style={{ height: '60%' }}
+              >
+                <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
+              </div>
+              <div className="absolute bottom-6 left-6 text-white pointer-events-none">
+                <div className="mb-2 text-sm opacity-80">
+                  {new Date(first.createdAt).toLocaleDateString()}
+                </div>
+                <div className="text-xl md:text-2xl drop-shadow-lg max-w-xs">{first.title}</div>
+              </div>
+            </div>
+          )}
+          {/* Right two small events */}
+          <div className="grid grid-rows-2 gap-1">
+            {second && (
+              <div
+                className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white"
+                onClick={() => handleEventClick(second.slug)}
+              >
+                <img
+                  src={second.coverImage?.url || ''}
+                  alt={second.title}
+                  className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
+                />
+                <div
+                  className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
+                  style={{ height: '60%' }}
+                >
+                  <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
+                </div>
+                <div className="absolute bottom-4 left-4 text-white pointer-events-none">
+                  <div className="mb-1 text-xs opacity-80">
+                    {new Date(second.createdAt).toLocaleDateString()}
+                  </div>
+                  <div className="text-lg drop-shadow max-w-xs">{second.title}</div>
+                </div>
+              </div>
+            )}
+            {third && (
+              <div
+                className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white"
+                onClick={() => handleEventClick(third.slug)}
+              >
+                <img
+                  src={third.coverImage?.url || ''}
+                  alt={third.title}
+                  className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
+                />
+                <div
+                  className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
+                  style={{ height: '60%' }}
+                >
+                  <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
+                </div>
+                <div className="absolute bottom-4 left-4 text-white pointer-events-none">
+                  <div className="mb-1 text-xs opacity-80">
+                    {new Date(third.createdAt).toLocaleDateString()}
+                  </div>
+                  <div className="text-lg drop-shadow max-w-xs">{third.title}</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+    return grids;
   };
 
   return (
@@ -68,108 +157,14 @@ export default function EventsPage() {
         <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12">
           {t('title')}
         </h2>
-        {/* Featured event */}
-        {featured && (
-          <div
-            className="relative w-full h-[300px] md:h-[450px] overflow-hidden mb-12 cursor-pointer group"
-            onClick={() => handleEventClick(featured.slug)}
-          >
-            <img
-              src={featured.coverImage?.url || ''}
-              alt={featured.title}
-              className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105 pointer-events-none"
-            />
-            <div
-              className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
-              style={{ height: '60%' }}
-            >
-              <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
-            </div>
-            <div className="absolute bottom-0 left-0 w-full p-8 pointer-events-none">
-              <div className="text-white opacity-70 text-md mb-2">
-                {new Date(featured.createdAt).toLocaleDateString()}
-              </div>
-              <div className="text-white text-2xl md:text-4xl font-[500] mb-2">
-                {featured.title}
-              </div>
-            </div>
-            <button
-              className="absolute bottom-6 right-6 w-12 h-12 flex items-center justify-center border border-white rounded-md bg-white/20 z-10 transition-colors duration-150 cursor-pointer"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (featured.slug) handleEventClick(featured.slug);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="white"
-                className="h-7 w-7"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        )}
         {/* Grouped events by month/year */}
-        <div className="border-t border-[#000D2D]/8">
+        <div>
           {Object.entries(grouped).map(([month, events]) => (
             <div key={month} className="border-b border-[#000D2D]/8 py-12 last:border-b-0">
               {/* Month/Year label above events */}
               <div className="text-[#000D2D] text-2xl md:text-3xl font-[500] mb-8">{month}</div>
-              {/* Events grid */}
-              <div className="flex flex-row flex-wrap gap-1 justify-start w-full">
-                {events.map((event, idx) => (
-                  <div
-                    key={event.id || idx}
-                    className="relative bg-gray-100 overflow-hidden group cursor-pointer aspect-[13/9] w-full md:max-w-[320px]"
-                    onClick={() => handleEventClick(event.slug || '')}
-                  >
-                    <img
-                      src={event.coverImage?.url || ''}
-                      alt={event.title}
-                      className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105 pointer-events-none"
-                    />
-                    <div
-                      className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
-                      style={{ height: '60%' }}
-                    >
-                      <div className="w-full h-full bg-gradient-to-t from-[#000D2D]/60 to-transparent" />
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full p-4 pointer-events-none">
-                      <div className="text-white opacity-80 text-xs mb-1">
-                        {new Date(event.createdAt).toLocaleDateString()}
-                      </div>
-                      <div className="text-white text-lg font-semibold">{event.title}</div>
-                    </div>
-                    {/* Arrow button on hover */}
-                    <button
-                      type="button"
-                      className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (event.slug) handleEventClick(event.slug);
-                      }}
-                    >
-                      <span className="w-12 h-12 bg-white/20 border border-white rounded-full flex items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2"
-                          stroke="white"
-                          className="h-6 w-6"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </button>
-                  </div>
-                ))}
-              </div>
+              {/* Events grid - same layout as Events.tsx */}
+              <div className="w-full">{renderEventGrid(events)}</div>
             </div>
           ))}
         </div>

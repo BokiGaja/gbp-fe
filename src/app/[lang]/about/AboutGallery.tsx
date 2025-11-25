@@ -41,12 +41,12 @@ export default function AboutGallery() {
 
   return (
     <section className="w-full py-12 md:py-20">
-      <h2 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12 text-center">
+      <h1 className="text-3xl md:text-4xl font-[500] text-[#000D2D] mb-8 md:mb-12 text-center">
         {t('title')}
-      </h2>
+      </h1>
 
       {/* Mobile: Unified Grid */}
-      <div className="grid grid-cols-1 gap-1 md:hidden">
+      <div className="grid grid-cols-1 gap-1 md:hidden mt-14">
         {images.map((image) => (
           <div
             key={image.id}
@@ -64,7 +64,7 @@ export default function AboutGallery() {
       </div>
 
       {/* Desktop: Left large image + Right grid */}
-      <div className="hidden md:flex md:gap-1">
+      <div className="hidden md:flex md:gap-1 mt-14">
         {/* Left: Large image */}
         {firstImage && (
           <div className="relative flex-1 h-[604px] overflow-hidden bg-gray-100 group">
@@ -79,7 +79,7 @@ export default function AboutGallery() {
         )}
 
         {/* Right: Grid of other images (2x2) */}
-        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-1 h-[604px]">
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-1 h-[604px] mt-14">
           {restImages.slice(0, 4).map((image) => (
             <div key={image.id} className="relative overflow-hidden bg-gray-100 group h-full">
               <Image

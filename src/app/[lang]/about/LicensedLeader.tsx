@@ -151,8 +151,8 @@ export default function LicensedLeader() {
   ) => (
     <div
       key={idx}
-      className="group bg-[#F5F5F5] md:bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default min-w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px] md:h-[300px]"
-      style={{ height: '300px' }}
+      className="group bg-[#F5F5F5] md:bg-white hover:bg-[#F5F5F5] rounded-xl flex flex-col items-start relative scroll-snap-start transition-colors duration-150 border border-transparent cursor-default min-w-full md:w-[420px] md:min-w-[420px] md:max-w-[420px]"
+      style={{ minHeight: '300px', height: 'auto' }}
     >
       {/* Overlay for non-hovered state */}
       <div className="absolute inset-0 bg-white opacity-20 pointer-events-none rounded-xl transition-opacity duration-150 group-hover:opacity-0" />
@@ -180,7 +180,7 @@ export default function LicensedLeader() {
         {license.title}
       </h3>
       <p
-        className="text-[16px] font-[400] px-8 pt-2 pb-8 leading-snug z-10 overflow-hidden"
+        className="text-[16px] font-[400] px-8 pt-2 pb-8 leading-snug z-10 flex-1"
         style={{ color: 'rgba(0,13,45,0.5)' }}
       >
         {license.description.length > 200
