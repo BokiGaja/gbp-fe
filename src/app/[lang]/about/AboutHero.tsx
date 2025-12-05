@@ -3,17 +3,22 @@
 import { useTranslations } from 'next-intl';
 import { useAboutUsGalleries } from '@/hooks/useAboutUsGalleries';
 import { useParams } from 'next/navigation';
+import RichTextRenderer from '@/components/RichTextRenderer';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 
 export default function AboutHero() {
   const t = useTranslations('about.hero');
   const params = useParams();
   const locale = params.lang as string;
-  const { data } = useAboutUsGalleries(locale);
+  const { data, isLoading } = useAboutUsGalleries(locale);
 
   // Fallback to translations if no data
   const title = data?.title || t('title');
   const description = data?.description || t('description');
+
+  // Check if description is rich text (array/object) or plain string
+  const isRichText =
+    Array.isArray(description) || (typeof description === 'object' && description !== null);
 
   return (
     <section className="w-full bg-white pt-12 md:pt-20 pb-12">
@@ -39,9 +44,19 @@ export default function AboutHero() {
         </div>
 
         {/* Description text */}
-        <div className="w-full max-w-4xl">
-          <MarkdownRenderer content={description || ''} />
-        </div>
+        {isLoading ? (
+          <div className="w-full max-w-4xl">
+            <div className="w-full h-10 bg-gray-200 animate-pulse rounded-lg" />
+          </div>
+        ) : (
+          <div className="w-full max-w-4xl">
+            {isRichText ? (
+              <RichTextRenderer content={description} />
+            ) : (
+              <MarkdownRenderer content={typeof description === 'string' ? description : ''} />
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

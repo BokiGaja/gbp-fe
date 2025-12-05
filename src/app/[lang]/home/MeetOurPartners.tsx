@@ -20,6 +20,7 @@ interface Partner {
   title: string;
   description: string;
   link: string;
+  position?: number;
 }
 
 export default function MeetOurPartners() {
@@ -36,26 +37,29 @@ export default function MeetOurPartners() {
     if (!data) return [];
     // Handle both array response and object with partners property
     const partnersData = Array.isArray(data) ? data : data.partners || [];
-    return partnersData.map((partner: Partner) => {
-      // Extract logo URL from object or use string directly
-      let logoUrl = '';
-      if (typeof partner.logo === 'string') {
-        logoUrl = partner.logo;
-      } else if (partner.logo) {
-        // Prefer small format, then thumbnail, then full URL
-        logoUrl =
-          partner.logo.formats?.small?.url ||
-          partner.logo.formats?.thumbnail?.url ||
-          partner.logo.url ||
-          '';
-      }
-      return {
-        image: logoUrl,
-        title: partner.title,
-        description: partner.description,
-        link: partner.link,
-      };
-    });
+    return partnersData
+      .map((partner: Partner) => {
+        // Extract logo URL from object or use string directly
+        let logoUrl = '';
+        if (typeof partner.logo === 'string') {
+          logoUrl = partner.logo;
+        } else if (partner.logo) {
+          // Prefer small format, then thumbnail, then full URL
+          logoUrl =
+            partner.logo.formats?.small?.url ||
+            partner.logo.formats?.thumbnail?.url ||
+            partner.logo.url ||
+            '';
+        }
+        return {
+          image: logoUrl,
+          title: partner.title,
+          description: partner.description,
+          link: partner.link,
+          position: partner.position ?? Infinity, // Use Infinity for undefined/null positions (sort to end)
+        };
+      })
+      .sort((a: { position: number }, b: { position: number }) => a.position - b.position); // Sort by position in ascending order
   }, [data]);
 
   // Debounced progress update
