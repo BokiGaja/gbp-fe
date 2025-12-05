@@ -164,7 +164,7 @@ const Footer = () => {
         {/* Our Info */}
         <div className="min-w-[320px] mb-8">
           <div className="text-white font-[500] text-2xl mb-6">{t('ourInfo')}</div>
-          <div className="text-white/50 mb-4">info@gbp.com</div>
+          <div className="text-white/50 mb-4">info@gbpdefence.com</div>
           <div className="text-white/50">Dr Zorana Djindjica 15a, Kragujevac</div>
         </div>
       </div>
