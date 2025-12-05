@@ -11,16 +11,34 @@ import AboutGallery from './AboutGallery';
 
 export default function AboutUsPage() {
   useEffect(() => {
-    // Handle hash navigation - scroll to licenses section if hash is present
-    if (window.location.hash === '#licenses') {
-      // Small delay to ensure the component is rendered
-      setTimeout(() => {
-        const licensesSection = document.getElementById('licenses');
-        if (licensesSection) {
-          licensesSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
+    const handleHashNavigation = () => {
+      const hash = window.location.hash;
+      if (hash === '#licenses') {
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            const licensesSection = document.getElementById('licenses');
+            if (licensesSection) {
+              licensesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        });
+      }
+    };
+
+    // Check immediately
+    handleHashNavigation();
+
+    // Also check after a short delay in case hash wasn't ready yet
+    const timeoutId = setTimeout(handleHashNavigation, 200);
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashNavigation);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('hashchange', handleHashNavigation);
+    };
   }, []);
 
   return (
