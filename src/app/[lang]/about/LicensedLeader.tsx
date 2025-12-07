@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react'
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useLicenses } from '@/hooks/useLicenses';
+import { useParams } from 'next/navigation';
 
 interface LogoImage {
   url: string;
@@ -39,7 +40,9 @@ function LicenseIcon() {
 
 export default function LicensedLeader() {
   const t = useTranslations('about.licensedLeader');
-  const { data, isLoading, isError } = useLicenses();
+  const params = useParams();
+  const locale = params.lang as string;
+  const { data, isLoading, isError } = useLicenses(locale);
 
   // Map API response to component format
   const licenses = useMemo(() => {
@@ -160,7 +163,7 @@ export default function LicensedLeader() {
         {license.image && (
           <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-full bg-white">
             <div className="absolute inset-2">
-              <Image src={license.image} alt={license.title} fill className="object-contain" />
+              <Image src={license.image} alt={license.title || 'License logo'} fill className="object-contain" />
             </div>
           </div>
         )}

@@ -26,14 +26,16 @@ export default function MeetOurFaces() {
               key={i}
               className={`group flex flex-col bg-[#F5F5F5] md:bg-white overflow-hidden transition-colors duration-200 md:hover:bg-[#F5F5F5] hover:cursor-pointer`}
             >
-              <div className="relative w-full aspect-square">
-                <img
-                  src={face.img}
-                  alt={face.name}
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
+              {face.img && (
+                <div className="relative w-full aspect-square">
+                  <img
+                    src={face.img}
+                    alt={face.name}
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+              )}
               <div className="flex flex-row items-center justify-between px-6 py-4">
                 <div>
                   <div className="font-semibold text-[#0A1633] text-lg mb-1">{face.name}</div>

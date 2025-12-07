@@ -54,6 +54,7 @@ const Footer = () => {
                 src="/logo.png"
                 alt="Logo"
                 className="h-10 w-auto mb-4 ml-[-4px] cursor-pointer"
+                style={{ width: 'auto' }}
               />
             </Link>
           </div>

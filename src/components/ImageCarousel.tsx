@@ -27,21 +27,23 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   className = '',
   autoplayInterval = 5000,
 }) => {
+  // Filter out images without URLs
+  const validImages = images?.filter((img) => img.url) || [];
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const goToNext = useCallback(() => {
-    if (images && images.length > 0) {
-      setSelectedIndex((prev) => (prev + 1) % images.length);
+    if (validImages && validImages.length > 0) {
+      setSelectedIndex((prev) => (prev + 1) % validImages.length);
     }
-  }, [images]);
+  }, [validImages]);
 
   const goToPrevious = useCallback(() => {
-    if (images && images.length > 0) {
-      setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (validImages && validImages.length > 0) {
+      setSelectedIndex((prev) => (prev - 1 + validImages.length) % validImages.length);
     }
-  }, [images]);
+  }, [validImages]);
 
   const goToImage = useCallback((index: number) => {
     setSelectedIndex(index);
@@ -49,7 +51,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
 
   // Autoplay functionality
   useEffect(() => {
-    if (!images || images.length <= 1) return;
+    if (!validImages || validImages.length <= 1) return;
 
     // Clear any existing interval
     if (intervalRef.current) {
@@ -69,13 +71,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPaused, goToNext, autoplayInterval, images]);
+  }, [isPaused, goToNext, autoplayInterval, validImages]);
 
-  if (!images || images.length === 0) {
+  if (!validImages || validImages.length === 0) {
     return null;
   }
 
-  const selectedImage = images[selectedIndex];
+  const selectedImage = validImages[selectedIndex];
 
   const handleMouseEnter = () => {
     setIsPaused(true);
@@ -103,7 +105,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         />
 
         {/* Navigation Arrows */}
-        {images.length > 1 && (
+        {validImages.length > 1 && (
           <>
             {/* Previous Button */}
             <button
@@ -148,19 +150,21 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         )}
 
         {/* Image Counter */}
-        {images.length > 1 && (
+        {validImages.length > 1 && (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
-            {selectedIndex + 1} / {images.length}
+            {selectedIndex + 1} / {validImages.length}
           </div>
         )}
       </div>
 
       {/* Thumbnail Navigation */}
-      {images.length > 1 && (
+      {validImages.length > 1 && (
         <div className="flex gap-3 overflow-x-auto py-4 px-1 scrollbar-hide -mx-1 overflow-y-visible justify-center">
-          {images.map((image, index) => {
+          {validImages.map((image, index) => {
             const thumbUrl = image.formats?.thumbnail?.url || image.url;
             const isActive = index === selectedIndex;
+
+            if (!thumbUrl) return null;
 
             return (
               <button

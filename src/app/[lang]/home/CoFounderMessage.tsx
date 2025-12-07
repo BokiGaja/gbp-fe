@@ -9,14 +9,16 @@ const CoFounderMessage = () => {
       <div className="w-full lg:w-1/2 flex justify-center items-center relative">
         <img
           src="/assets/budimir_gajic.jpeg"
-          alt="Budimir Gajic"
+          alt={t('coFounderName')}
           className="object-contain max-h-[600px]"
         />
         {/* Mobile overlay */}
         <div className="block lg:hidden absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#000D2D]/90 to-transparent p-4 flex flex-row items-center justify-between">
           <div>
-            <div className="text-[20px] text-white font-[500] leading-tight">Budimir Gajic</div>
-            <div className="text-[16px] text-white/70 font-[400]">Co-Founder</div>
+            <div className="text-[20px] text-white font-[500] leading-tight">
+              {t('coFounderName')}
+            </div>
+            <div className="text-[16px] text-white/70 font-[400]">{t('coFounderRole')}</div>
           </div>
           <a
             href="https://www.linkedin.com/in/budimir-gajic"
@@ -41,8 +43,10 @@ const CoFounderMessage = () => {
         {/* Desktop name/title/linkedin */}
         <div className="mt-auto hidden lg:flex flex-row items-center justify-between w-full">
           <div>
-            <div className="text-[24px] text-white font-[500] leading-tight">Budimir Gajic</div>
-            <div className="text-[24px] text-white/70 font-[400]">Co-Founder</div>
+            <div className="text-[24px] text-white font-[500] leading-tight">
+              {t('coFounderName')}
+            </div>
+            <div className="text-[24px] text-white/70 font-[400]">{t('coFounderRole')}</div>
           </div>
           <a
             href="https://www.linkedin.com/in/budimir-gajic"

@@ -7,4 +7,3 @@ export const mapLocaleForAPI = (locale: string): string => {
   if (locale === 'sr-Latn') return 'sr';
   return locale;
 };
-

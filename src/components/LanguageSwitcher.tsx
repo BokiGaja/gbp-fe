@@ -14,7 +14,10 @@ export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const getLabel = (locale: string) => {
-    return locale === 'en' ? 'Eng' : 'Srpski';
+    if (locale === 'en') return 'Eng';
+    if (locale === 'sr-Latn') return 'Srpski';
+    if (locale === 'ru-RU') return 'Русский';
+    return locale;
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -32,21 +35,21 @@ export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
   const getParentPath = (path: string): string => {
     // Remove leading slash and split
     const segments = path.split('/').filter(Boolean);
-    
+
     // Check if we're on a detail page (items/[slug], events/[slug], or categories with multiple segments)
     if (segments.length >= 2) {
       const [firstSegment, secondSegment] = segments;
-      
+
       // If it's items/[slug], go to home page (no items listing page exists)
       if (firstSegment === 'items') {
         return '/';
       }
-      
+
       // If it's events/[slug], go to events listing page
       if (firstSegment === 'events') {
         return '/events';
       }
-      
+
       // If it's categories with multiple segments, go to parent category or home
       if (firstSegment === 'categories' && segments.length > 1) {
         // If there are 2 segments (root category), go to home page (no categories listing exists)
@@ -58,7 +61,7 @@ export function LanguageSwitcher({ isDark = false }: { isDark?: boolean }) {
         }
       }
     }
-    
+
     // For other pages, return the original path
     return path;
   };

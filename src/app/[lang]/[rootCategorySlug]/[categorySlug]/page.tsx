@@ -1,6 +1,7 @@
 import { Navigation } from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { BASE_API } from '@/constants/api';
+import { mapLocaleForAPI } from '@/utils/locale';
 import React from 'react';
 import CategoryGrid from '@/components/categoryGrid/CategoryGrid';
 import LoadingPage from '@/components/LoadingPage';
@@ -17,7 +18,9 @@ export default async function CategoryPage({
   let isLoading = false;
 
   try {
-    const res = await fetch(`${BASE_API}/categories?slug=${resolvedParams.categorySlug}`, {
+    const apiLocale = mapLocaleForAPI(resolvedParams.lang);
+    const url = `${BASE_API}/categories?slug=${resolvedParams.categorySlug}&locale=${apiLocale}`;
+    const res = await fetch(url, {
       next: { revalidate: 60 },
     });
     if (!res.ok) throw new Error('Not found');

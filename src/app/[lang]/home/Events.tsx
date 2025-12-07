@@ -39,7 +39,7 @@ const Events = () => {
       slug: event.slug,
       date: event.createdAt ? new Date(event.createdAt).toLocaleDateString() : '',
       image:
-        event.coverImage?.formats?.small?.url || event.coverImage?.formats?.thumbnail?.url || '',
+        event.coverImage?.formats?.small?.url || event.coverImage?.formats?.thumbnail?.url || null,
     }));
   }, [data]);
 
@@ -69,15 +69,16 @@ const Events = () => {
       </div>
       <div className="grid md:grid-cols-2 gap-1">
         {/* Left large event */}
-        <div
-          className="relative md:row-span-2 max-h-[604px] h-[300px] md:h-[604px] overflow-hidden cursor-pointer group bg-white"
-          onClick={() => items[0]?.slug && handleEventClick(items[0].slug)}
-        >
-          <img
-            src={items[0].image}
-            alt={items[0].title}
-            className="w-full h-full object-cover max-h-[604px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
-          />
+        {items[0]?.image && (
+          <div
+            className="relative md:row-span-2 max-h-[604px] h-[300px] md:h-[604px] overflow-hidden cursor-pointer group bg-white"
+            onClick={() => items[0]?.slug && handleEventClick(items[0].slug)}
+          >
+            <img
+              src={items[0].image}
+              alt={items[0].title || 'Event image'}
+              className="w-full h-full object-cover max-h-[604px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
+            />
           <div
             className="absolute left-0 bottom-0 w-full pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
             style={{ height: '60%' }}
@@ -88,12 +89,13 @@ const Events = () => {
             <div className="mb-2 text-sm opacity-80">{items[0].date}</div>
             <div className="text-xl md:text-2xl drop-shadow-lg max-w-xs">{items[0].title}</div>
           </div>
-        </div>
+          </div>
+        )}
         {/* Right two small events */}
         <div className="grid grid-rows-2 gap-1">
           {[1, 2].map(
             (i) =>
-              items[i] && (
+              items[i] && items[i].image && (
                 <div
                   key={i}
                   className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white"
@@ -101,7 +103,7 @@ const Events = () => {
                 >
                   <img
                     src={items[i].image}
-                    alt={items[i].title}
+                    alt={items[i].title || 'Event image'}
                     className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
                   />
                   <div

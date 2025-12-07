@@ -85,7 +85,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, className 
             return (
               <img
                 src={image.url}
-                alt={image.alternativeText || ''}
+                alt={image.alternativeText || 'Image'}
                 className="my-6 w-full h-auto rounded-lg"
                 loading="lazy"
               />

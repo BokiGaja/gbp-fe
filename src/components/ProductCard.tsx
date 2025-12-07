@@ -19,12 +19,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, image, className = '',
 
   const href = buildCategoryPath(item, lang);
 
+  // Don't render if no valid image
+  if (!image) {
+    return null;
+  }
+
   return (
     <div className={`relative overflow-hidden cursor-pointer group ${className}`}>
       <Link href={href} className="block w-full h-full">
         <Image
           src={image}
-          alt={title}
+          alt={title || 'Product image'}
           className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
           fill
         />

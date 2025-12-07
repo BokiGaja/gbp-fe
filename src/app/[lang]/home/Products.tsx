@@ -21,11 +21,13 @@ const Products = () => {
   // Memoize the items array from API data
   const items = useMemo(() => {
     if (!data?.categories) return [];
-    return data.categories.map((cat: Category) => ({
-      title: cat.name,
-      image: cat.coverImage?.formats?.small?.url || cat.coverImage?.formats?.thumbnail?.url || '',
-      slug: cat.slug,
-    }));
+    return data.categories
+      .map((cat: Category) => ({
+        title: cat.name,
+        image: cat.coverImage?.formats?.small?.url || cat.coverImage?.formats?.thumbnail?.url || null,
+        slug: cat.slug,
+      }))
+      .filter((item) => item.image !== null);
   }, [data, lang]);
 
   if (isLoading)

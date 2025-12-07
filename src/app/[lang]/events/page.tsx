@@ -69,14 +69,14 @@ export default function EventsPage() {
       grids.push(
         <div key={i} className="grid md:grid-cols-2 gap-1 mb-1">
           {/* Left large event */}
-          {first && (
+          {first && first.coverImage?.url && (
             <div
               className="relative md:row-span-2 max-h-[604px] h-[300px] md:h-[604px] overflow-hidden cursor-pointer group bg-white"
               onClick={() => handleEventClick(first.slug)}
             >
               <img
-                src={first.coverImage?.url || ''}
-                alt={first.title}
+                src={first.coverImage.url}
+                alt={first.title || 'Event image'}
                 className="w-full h-full object-cover max-h-[604px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
               />
               <div
@@ -95,14 +95,14 @@ export default function EventsPage() {
           )}
           {/* Right two small events */}
           <div className="grid grid-rows-2 gap-1">
-            {second && (
+            {second && second.coverImage?.url && (
               <div
                 className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white"
                 onClick={() => handleEventClick(second.slug)}
               >
                 <img
-                  src={second.coverImage?.url || ''}
-                  alt={second.title}
+                  src={second.coverImage.url}
+                  alt={second.title || 'Event image'}
                   className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
                 />
                 <div
@@ -119,14 +119,14 @@ export default function EventsPage() {
                 </div>
               </div>
             )}
-            {third && (
+            {third && third.coverImage?.url && (
               <div
                 className="relative max-h-[300px] h-[140px] md:h-[300px] overflow-hidden cursor-pointer group bg-white"
                 onClick={() => handleEventClick(third.slug)}
               >
                 <img
-                  src={third.coverImage?.url || ''}
-                  alt={third.title}
+                  src={third.coverImage.url}
+                  alt={third.title || 'Event image'}
                   className="w-full h-full object-cover max-h-[300px] transition-all duration-300 group-hover:scale-105 pointer-events-none"
                 />
                 <div

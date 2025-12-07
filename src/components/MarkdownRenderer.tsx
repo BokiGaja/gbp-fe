@@ -33,7 +33,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
             return (
               <img
                 src={src}
-                alt={alt || ''}
+                alt={alt || 'Image'}
                 className="my-6 w-full h-auto rounded-lg"
                 loading="lazy"
               />

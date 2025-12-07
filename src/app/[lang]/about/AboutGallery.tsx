@@ -47,26 +47,28 @@ export default function AboutGallery() {
 
       {/* Mobile: Unified Grid */}
       <div className="grid grid-cols-1 gap-1 md:hidden mt-14">
-        {images.map((image) => (
-          <div
-            key={image.id}
-            className="relative w-full aspect-square overflow-hidden bg-gray-100 group"
-          >
-            <Image
-              src={image.url}
-              alt={`Gallery image ${image.id}`}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="100vw"
-            />
-          </div>
-        ))}
+        {images
+          .filter((image) => image.url)
+          .map((image) => (
+            <div
+              key={image.id}
+              className="relative w-full aspect-square overflow-hidden bg-gray-100 group"
+            >
+              <Image
+                src={image.url}
+                alt={`Gallery image ${image.id}`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="100vw"
+              />
+            </div>
+          ))}
       </div>
 
       {/* Desktop: Left large image + Right grid */}
       <div className="hidden md:flex md:gap-1 mt-14">
         {/* Left: Large image */}
-        {firstImage && (
+        {firstImage && firstImage.url && (
           <div className="relative flex-1 h-[604px] overflow-hidden bg-gray-100 group">
             <Image
               src={firstImage.url}
@@ -80,17 +82,20 @@ export default function AboutGallery() {
 
         {/* Right: Grid of other images (2x2) */}
         <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-1 h-[604px] mt-14">
-          {restImages.slice(0, 4).map((image) => (
-            <div key={image.id} className="relative overflow-hidden bg-gray-100 group h-full">
-              <Image
-                src={image.url}
-                alt={`Gallery image ${image.id}`}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-            </div>
-          ))}
+          {restImages
+            .filter((image) => image.url)
+            .slice(0, 4)
+            .map((image) => (
+              <div key={image.id} className="relative overflow-hidden bg-gray-100 group h-full">
+                <Image
+                  src={image.url}
+                  alt={`Gallery image ${image.id}`}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
+            ))}
         </div>
       </div>
     </section>

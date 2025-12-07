@@ -51,7 +51,7 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link href="/">
-              <Image src="/logo.png" alt="Logo" width={76} height={76} className="w-[76px]" />
+              <Image src="/logo.png" alt="Logo" width={76} height={76} className="w-[76px]" style={{ height: 'auto' }} />
             </Link>
           </div>
           {/* Center: Navigation Links */}

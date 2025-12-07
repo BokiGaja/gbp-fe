@@ -35,19 +35,23 @@ const EventPage = () => {
 
           {/* Cover Image */}
           {event.coverImage && (
-            <div className="mb-8 md:mb-12 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src={
-                  event.coverImage.url ||
-                  event.coverImage.formats?.large?.url ||
-                  event.coverImage.formats?.medium?.url ||
-                  event.coverImage.formats?.small?.url ||
-                  ''
-                }
-                alt={event.title}
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            (event.coverImage.url ||
+              event.coverImage.formats?.large?.url ||
+              event.coverImage.formats?.medium?.url ||
+              event.coverImage.formats?.small?.url) && (
+              <div className="mb-8 md:mb-12 rounded-lg overflow-hidden shadow-lg">
+                <img
+                  src={
+                    event.coverImage.url ||
+                    event.coverImage.formats?.large?.url ||
+                    event.coverImage.formats?.medium?.url ||
+                    event.coverImage.formats?.small?.url
+                  }
+                  alt={event.title || 'Event cover image'}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )
           )}
 
           {/* Description */}
