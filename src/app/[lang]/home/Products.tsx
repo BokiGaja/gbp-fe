@@ -27,7 +27,7 @@ const Products = () => {
         image: cat.coverImage?.formats?.small?.url || cat.coverImage?.formats?.thumbnail?.url || null,
         slug: cat.slug,
       }))
-      .filter((item) => item.image !== null);
+      .filter((item: { title: string; image: string | null; slug: string }) => item.image !== null);
   }, [data, lang]);
 
   if (isLoading)
