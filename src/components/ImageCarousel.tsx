@@ -110,7 +110,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             {/* Previous Button */}
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-10 cursor-pointer"
               aria-label="Previous image"
             >
               <svg
@@ -130,7 +130,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             {/* Next Button */}
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-10 cursor-pointer"
               aria-label="Next image"
             >
               <svg
@@ -172,7 +172,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                 onClick={() => goToImage(index)}
                 className={`flex-shrink-0 relative transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'ring-2 ring-[#000D2D] ring-offset-1 md:ring-offset-2 scale-[1.03] md:scale-105'
+                    ? 'ring-2 ring-[#000D2D] ring-offset-1 md:ring-offset-2 scale-[1.03] md:scale-105 rounded-md'
                     : 'opacity-60 hover:opacity-100 hover:scale-[1.02] md:hover:scale-105'
                 }`}
                 aria-label={`Go to image ${index + 1}`}
