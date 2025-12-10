@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true, // Disable image optimization globally to avoid Vercel 402 errors
     remotePatterns: [
       {
         protocol: 'https',
