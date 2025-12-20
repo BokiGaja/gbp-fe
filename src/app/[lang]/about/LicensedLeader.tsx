@@ -163,7 +163,12 @@ export default function LicensedLeader() {
         {license.image && (
           <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-full bg-white">
             <div className="absolute inset-2">
-              <Image src={license.image} alt={license.title || 'License logo'} fill className="object-contain" />
+              <Image
+                src={license.image}
+                alt={license.title || 'License logo'}
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
         )}
@@ -208,7 +213,7 @@ export default function LicensedLeader() {
   }
 
   return (
-    <section id="licenses" className="pt-20 md:pt-30 w-full">
+    <section id="licenses" className="w-full">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-8 md:mb-12 gap-3">
         <h2 className="text-3xl md:text-4xl text-[#000D2D] font-[500] mb-0 whitespace-pre-line m-0 mr-2">
           {t('title')}

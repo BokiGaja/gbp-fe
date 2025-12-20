@@ -10,21 +10,25 @@ export default function MeetOurFaces() {
       img: '/assets/budimir_gajic.jpeg',
       linkedin: 'https://linkedin.com/in/budimir-gajic-gbp',
     },
+    {
+      name: 'Petar Cvetkovic',
+      role: t('directorIdair'),
+      img: '/assets/cvetkovic_petar.jpeg',
+      linkedin: undefined,
+    },
   ];
 
   return (
-    <section className="w-full bg-white py-12 md:py-20">
+    <section className="w-full bg-white pt-12 pb-24">
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-4xl md:text-5xl font-[500] text-[#0A1633] text-center m-0 mb-20 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-[500] text-[#0A1633] text-center mb-8 md:mb-16 leading-tight">
           {t('title')}
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          {/* Empty placeholder for first position */}
-          <div className="hidden md:block"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:max-w-2xl md:mx-auto">
           {faces.map((face, i) => (
             <div
               key={i}
-              className={`group flex flex-col bg-[#F5F5F5] md:bg-white overflow-hidden transition-colors duration-200 md:hover:bg-[#F5F5F5] hover:cursor-pointer`}
+              className="group flex flex-col bg-[#F5F5F5] md:bg-white overflow-hidden transition-colors duration-200 md:hover:bg-[#F5F5F5] hover:cursor-pointer"
             >
               {face.img && (
                 <div className="relative w-full aspect-square">
@@ -46,7 +50,7 @@ export default function MeetOurFaces() {
                     href={face.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
+                    className="ml-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
                   >
                     <svg width="56" height="56" fill="none" viewBox="0 0 56 56">
                       <rect width="56" height="56" rx="8" fill="#F5F5F5" />

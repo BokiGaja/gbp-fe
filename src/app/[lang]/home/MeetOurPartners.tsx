@@ -163,7 +163,7 @@ export default function MeetOurPartners() {
   }
 
   return (
-    <section id="partners" className="pt-20 md:pt-30 px-4 w-full">
+    <section id="partners" className="pt-20 md:pt-30 px-4 w-full pb-8 md:pb-12">
       <div className="flex flex-col md:flex-row md:items-center w-full mb-8 md:mb-12 gap-3">
         <h2 className="text-3xl md:text-4xl text-[#000D2D] font-[500] mb-0 whitespace-nowrap m-0 mr-2">
           {t('meetOurPartners')}
