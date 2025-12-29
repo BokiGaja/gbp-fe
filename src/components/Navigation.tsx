@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname, useParams } from 'next/navigation';
 import { MobileNavigation } from './mobile/MobileNavigation';
 import { ProductsDropdown } from './ProductsDropdown';
@@ -29,6 +29,30 @@ export function Navigation({ isHome = false }: { isHome?: boolean }) {
   };
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Check for #products hash on mount, when pathname changes, and on hash changes
+  useEffect(() => {
+    const checkHash = () => {
+      if (isHomePage) {
+        const hash = window.location.hash;
+        if (hash === '#products') {
+          setDropdownOpen(true);
+          // Remove the hash from URL after opening
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      }
+    };
+
+    // Check immediately
+    checkHash();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', checkHash);
+
+    return () => {
+      window.removeEventListener('hashchange', checkHash);
+    };
+  }, [isHomePage, pathname]);
 
   const linkClass = isHome
     ? 'opacity-70 hover:opacity-100 transition text-white'
