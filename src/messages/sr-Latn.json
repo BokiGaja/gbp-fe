@@ -1,7 +1,7 @@
 {
   "home": {
-    "pageTitle": "Sačuvajmo naše okruženje.",
-    "pageSubtitle": "Naša najsavremenija oklopna vozila pružaju neuporediv učinak.",
+    "pageTitle": "Iskustvo, inovativnost i odgovornost",
+    "pageSubtitle": "Pružamo usluge održavanja specijalnih vozila, informacione i fizičke bezbednosti",
     "locatedInSerbia": "Loacirni u Srbiji",
     "visitWebsite": "Poseti sajt",
     "meetOurPartners": "Upoznajte naše partnere",
@@ -9,7 +9,7 @@
     "coFounderTitle": "Na ramenima divova gradimo budućnost odbrane.",
     "coFounderBody": "Osnivanje naše kompanije predstavlja više od samog početka – to je vizija zasnovana na inovacijama, poverenju i odlučnosti da unapredimo vojnu industriju. Naš cilj je da razvijamo tehnologije i rešenja koja ne samo da ispunjavaju, već i postavljaju nove standarde u oblasti odbrane.",
     "coFounderName": "Budimir Gajić",
-    "coFounderRole": "Suosnivač",
+    "coFounderRole": "Suosnivač i direktor",
     "events": {
       "title": "Događaji",
       "readAll": "Pogledaj sve"
@@ -37,7 +37,7 @@
     "title": "O nama",
     "description": "Mi smo tim posvećen razvoju odličnog softvera",
     "hero": {
-      "title": "Vojna kompanija koja je",
+      "title": "Kompanija specijalizovana za širok spektar usluga u oblasti bezbednosti",
       "title2": "licencirani lider u industriji",
       "description": "Naša najsavremenija oklopna vozila pružaju neuporedivu zaštitu i performanse."
     },

@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Briefcase, Users, Handshake } from 'lucide-react';
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { Link, useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
 
 export default function ContactUsPage() {
   const t = useTranslations('contact');
@@ -20,8 +20,11 @@ export default function ContactUsPage() {
         </h2>
         <div className="flex flex-col lg:flex-row gap-6 w-full justify-center">
           {/* Products & Services */}
-          <Link
-            href="/#products"
+          <div
+            onClick={() => {
+              const subject = encodeURIComponent(t('productsServices.title'));
+              window.location.href = `mailto:info@gbpdefence.com?subject=${subject}`;
+            }}
             className="flex-1 bg-white rounded-lg p-8 flex flex-col shadow-sm min-w-[280px] border border-[#E5E7EB] transition-all duration-200 hover:bg-[#F5F6F8] hover:border-transparent cursor-pointer"
           >
             <div className="mb-4">
@@ -36,7 +39,7 @@ export default function ContactUsPage() {
             <div className="mt-auto text-[#000D2D] font-medium flex items-center gap-2 hover:no-underline transition">
               {t('productsServices.cta')} <span className="ml-1">→</span>
             </div>
-          </Link>
+          </div>
           {/* Join the Team */}
           <div
             onClick={() => router.push('/contact/open-roles')}
@@ -52,8 +55,11 @@ export default function ContactUsPage() {
             </div>
           </div>
           {/* Partnership */}
-          <Link
-            href="/#partners"
+          <div
+            onClick={() => {
+              const subject = encodeURIComponent(t('partnership.title'));
+              window.location.href = `mailto:info@gbpdefence.com?subject=${subject}`;
+            }}
             className="flex-1 bg-white rounded-lg p-8 flex flex-col shadow-sm min-w-[280px] border border-[#E5E7EB] transition-all duration-200 hover:bg-[#F5F6F8] hover:border-transparent cursor-pointer"
           >
             <div className="mb-4">
@@ -64,7 +70,7 @@ export default function ContactUsPage() {
             <div className="mt-auto text-[#000D2D] font-medium flex items-center gap-2 hover:no-underline transition">
               {t('partnership.cta')} <span className="ml-1">→</span>
             </div>
-          </Link>
+          </div>
         </div>
       </main>
       <Footer />

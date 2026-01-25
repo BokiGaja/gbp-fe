@@ -111,30 +111,13 @@ const ContactUs = () => {
               // Join the Team
               router.push('/contact/open-roles');
             } else if (idx === 1) {
-              // Products & Services
-              if (isHomePage) {
-                // If already on home page, scroll to top first, then open dropdown
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                // Wait for scroll to complete before opening dropdown
-                setTimeout(() => {
-                  window.location.hash = '#products';
-                }, 500);
-              } else {
-                // If not on home page, navigate to home with hash
-                router.push('/#products');
-              }
+              // Products & Services - Open email with pre-populated subject
+              const subject = encodeURIComponent(option.text);
+              window.location.href = `mailto:info@gbpdefence.com?subject=${subject}`;
             } else if (idx === 2) {
-              // Partnership
-              if (isHomePage) {
-                // If already on home page, scroll to partners section
-                const partnersSection = document.getElementById('partners');
-                if (partnersSection) {
-                  partnersSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              } else {
-                // If not on home page, navigate to home with hash
-                router.push('/#partners');
-              }
+              // Partnership - Open email with pre-populated subject
+              const subject = encodeURIComponent(option.text);
+              window.location.href = `mailto:info@gbpdefence.com?subject=${subject}`;
             }
           };
 
