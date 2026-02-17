@@ -1,7 +1,7 @@
 {
   "home": {
     "pageTitle": "Iskustvo, inovativnost i odgovornost",
-    "pageSubtitle": "Pružamo usluge održavanja specijalnih vozila, informacione i fizičke bezbednosti",
+    "pageSubtitle": "Pružamo usluge održavanja specijalnih vozila, informacione bezbednosti i tehničke zaštite",
     "locatedInSerbia": "Loacirni u Srbiji",
     "visitWebsite": "Poseti sajt",
     "meetOurPartners": "Upoznajte naše partnere",
@@ -43,14 +43,14 @@
     },
     "meetOurFaces": {
       "title": "Upoznajte naše ljude",
-      "coFounderGBP": "Suosnivač GBP-a",
+      "coFounderGBP": "Suosnivač i direktor GBP-a",
       "coFounderIdair": "Suosnivač Idair-a",
       "coFounderDJSpot": "Suosnivač D.J. Spot-a",
-      "directorIdair": "Direktor ID AIR d.o.o"
+      "directorIdair": "Suosnivač GBP-a i direktor ID AIR d.o.o"
     },
     "licensedLeader": {
       "title": "Licencirani lider u",
-      "title2": "vojnoj industriji",
+      "title2": "oblasti bezbednosti",
       "seeLicense": "Pogledaj licencu",
       "scrollLeft": "Skroluj levo",
       "scrollRight": "Skroluj desno"

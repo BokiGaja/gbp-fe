@@ -1,7 +1,7 @@
 {
   "home": {
     "pageTitle": "Experience, innovation and responsibility",
-    "pageSubtitle": "We provide special vehicle maintenance services, information and physical security",
+    "pageSubtitle": "We provide special vehicle maintenance services, information security and technical protection",
     "locatedInSerbia": "Located in Serbia",
     "visitWebsite": "Visit Website",
     "meetOurPartners": "Meet Our Partners",
@@ -43,14 +43,14 @@
     },
     "meetOurFaces": {
       "title": "Meet our faces",
-      "coFounderGBP": "Co-Founder of GBP",
+      "coFounderGBP": "Co-Founder and Director of GBP",
       "coFounderIdair": "Co-Founder of Idair",
       "coFounderDJSpot": "Co-Founder of D.J. Spot",
-      "directorIdair": "Director ID AIR d.o.o"
+      "directorIdair": "Co-Founder of GBP and Director ID AIR d.o.o"
     },
     "licensedLeader": {
       "title": "Licensed Leader in",
-      "title2": "the Military Industry",
+      "title2": "the Security Sector",
       "seeLicense": "See license",
       "scrollLeft": "Scroll left",
       "scrollRight": "Scroll right"
